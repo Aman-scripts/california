@@ -86,18 +86,18 @@ export function HeroSection() {
             })}
           </div>
 
-          <div className={`flex flex-wrap items-end gap-3 pt-2 ${enter} [animation-delay:650ms]`}>
+          <div className={`flex flex-nowrap items-stretch gap-2 pt-2 sm:gap-3 ${enter} [animation-delay:650ms]`}>
             <Button
               size="xl"
               variant="outline"
-              className="border-white/25 bg-transparent text-white hover:bg-white/10 hover:text-white"
+              className="min-w-0 flex-1 basis-1/2 justify-center border-white/25 bg-transparent px-2 text-center text-sm whitespace-normal text-white hover:bg-white/10 hover:text-white sm:flex-initial sm:basis-auto sm:whitespace-nowrap sm:px-8 sm:text-base"
               asChild
             >
               <Link href="/#benefits">Check Benefits</Link>
             </Button>
             <Button
               size="xl"
-              className="bg-emerald-400 text-emerald-950 hover:bg-emerald-300"
+              className="min-w-0 flex-1 basis-1/2 justify-center bg-emerald-400 px-2 text-center text-sm whitespace-normal text-emerald-950 hover:bg-emerald-300 sm:flex-initial sm:basis-auto sm:whitespace-nowrap sm:px-8 sm:text-base"
               asChild
             >
               <a href="/#get-approved">Apply Your Application</a>
