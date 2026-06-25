@@ -6,6 +6,9 @@ import { contactInfo, siteConfig } from "@/lib/site-data";
 export const metadata: Metadata = {
   title: "Shipment Policy & Disclaimer | Medical Marijuana Card California",
   description: "Shipping details for physical MMIC ID cards and important disclaimers about our service.",
+  alternates: {
+    canonical: "/shipment-policy-and-disclaimer",
+  },
 };
 
 export default function ShipmentPolicyAndDisclaimerPage() {

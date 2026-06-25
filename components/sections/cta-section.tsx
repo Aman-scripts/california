@@ -9,7 +9,7 @@ export function CtaSection() {
           <h2 className="font-heading text-3xl font-semibold tracking-tight sm:text-4xl">
             Ready to Get Your Medical Marijuana Card?
           </h2>
-          <p className="max-w-xl text-primary-foreground/90">
+          <p className="max-w-xl text-primary-foreground">
             Book your appointment today and talk to a licensed doctor within
             24-48 hours, with a 100% money-back guarantee.
           </p>

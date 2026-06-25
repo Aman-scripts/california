@@ -2,7 +2,6 @@
 
 import { useEffect, useState } from "react";
 import { usePathname } from "next/navigation";
-import { motion } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
 import { Menu, Phone } from "lucide-react";
@@ -89,6 +88,7 @@ export function SiteHeader() {
               alt="Medical Marijuana Card California"
               fill
               priority
+              sizes="144px"
               className="object-contain object-left"
             />
           </span>
@@ -105,11 +105,7 @@ export function SiteHeader() {
             const content = (
               <>
                 {isActive && (
-                  <motion.span
-                    layoutId="header-active-pill"
-                    className="absolute inset-0 rounded-full bg-white/15 ring-1 ring-white/25"
-                    transition={{ type: "spring", stiffness: 380, damping: 32 }}
-                  />
+                  <span className="absolute inset-0 animate-in rounded-full bg-white/15 fade-in-0 ring-1 ring-white/25 duration-200" />
                 )}
                 <span className="relative">{link.label}</span>
               </>
@@ -168,6 +164,7 @@ export function SiteHeader() {
                     src="/logo.png"
                     alt="Medical Marijuana Card California"
                     fill
+                    sizes="192px"
                     className="object-contain object-left"
                   />
                 </span>

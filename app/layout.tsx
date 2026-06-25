@@ -27,13 +27,26 @@ const poppins = Poppins({
 });
 
 export const metadata: Metadata = {
-  title: `${siteConfig.fullName} | ${siteConfig.tagline}`,
+  metadataBase: new URL(siteConfig.url),
+  title: {
+    default: `${siteConfig.fullName} | ${siteConfig.tagline}`,
+    template: `%s | ${siteConfig.fullName}`,
+  },
   description: siteConfig.description,
+  alternates: {
+    canonical: "/",
+  },
   openGraph: {
     title: siteConfig.fullName,
     description: siteConfig.description,
     url: siteConfig.url,
     siteName: siteConfig.fullName,
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: siteConfig.fullName,
+    description: siteConfig.description,
   },
 };
 

@@ -6,6 +6,9 @@ import { contactInfo, siteConfig } from "@/lib/site-data";
 export const metadata: Metadata = {
   title: "Refund Policy | Medical Marijuana Card California",
   description: "Our money-back guarantee and refund eligibility for medical marijuana card evaluations.",
+  alternates: {
+    canonical: "/refund-policy",
+  },
 };
 
 export default function RefundPolicyPage() {

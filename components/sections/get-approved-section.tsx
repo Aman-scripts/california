@@ -1,7 +1,6 @@
 "use client";
 
 import { useState, type ChangeEvent, type FormEvent } from "react";
-import { motion, type Variants } from "framer-motion";
 import { Lock, Sparkles } from "lucide-react";
 
 import { Badge } from "@/components/ui/badge";
@@ -19,8 +18,6 @@ declare global {
   }
 }
 
-const EASE = [0.22, 1, 0.36, 1] as const;
-
 const HEALLY_UTM_SOURCE = `${siteConfig.url}/`;
 
 const stats = [
@@ -29,20 +26,12 @@ const stats = [
   { value: "100%", label: "Online" },
 ];
 
-const columnVariants: Variants = {
-  hidden: {},
-  show: { transition: { staggerChildren: 0.12, delayChildren: 0.05 } },
-};
+const itemEnter = "animate-in fade-in-0 slide-in-from-bottom-4 fill-mode-both duration-500 ease-out";
+const fieldEnter = "animate-in fade-in-0 slide-in-from-bottom-3 fill-mode-both duration-500 ease-out";
 
-const itemVariants: Variants = {
-  hidden: { opacity: 0, y: 20 },
-  show: { opacity: 1, y: 0, transition: { duration: 0.6, ease: EASE } },
-};
-
-const fieldVariants: Variants = {
-  hidden: { opacity: 0, y: 14 },
-  show: { opacity: 1, y: 0, transition: { duration: 0.45, ease: EASE } },
-};
+function staggerDelay(index: number) {
+  return { animationDelay: `${50 + index * 120}ms` };
+}
 
 function validateName(value: string) {
   const parts = value.trim().split(/\s+/).filter(Boolean);
@@ -197,14 +186,8 @@ export function GetApprovedSection() {
       className="cv-auto bg-mesh-trust relative overflow-hidden py-20 sm:py-28"
     >
       <Container className="grid items-center gap-12 lg:grid-cols-2">
-        <motion.div
-          className="flex flex-col gap-4"
-          initial="hidden"
-          whileInView="show"
-          viewport={{ once: true, amount: 0.4 }}
-          variants={columnVariants}
-        >
-          <motion.div variants={itemVariants}>
+        <div className="flex flex-col gap-4">
+          <div className={itemEnter} style={staggerDelay(0)}>
             <Badge
               variant="outline"
               className="h-auto gap-2.5 rounded-full bg-card px-5 py-3 text-base font-semibold"
@@ -212,31 +195,31 @@ export function GetApprovedSection() {
               <Sparkles className="size-5 text-primary" />
               Same-Day Telehealth
             </Badge>
-          </motion.div>
+          </div>
 
-          <motion.h2
-            variants={itemVariants}
-            className="font-heading text-3xl font-semibold tracking-tight sm:text-4xl"
+          <h2
+            className={`font-heading text-3xl font-semibold tracking-tight sm:text-4xl ${itemEnter}`}
+            style={staggerDelay(1)}
           >
             Fast MMJ Approval in Less Than 30 Minutes
-          </motion.h2>
+          </h2>
 
-          <motion.p variants={itemVariants} className="max-w-md text-muted-foreground">
+          <p className={`max-w-md text-muted-foreground ${itemEnter}`} style={staggerDelay(2)}>
             Most patients complete the process easily and receive their
             doctor&rsquo;s approval within 15 to 30 minutes. It&rsquo;s a
             quick and stress-free experience designed to fit right into
             your day.
-          </motion.p>
+          </p>
 
-          <motion.p variants={itemVariants} className="max-w-md text-muted-foreground">
+          <p className={`max-w-md text-muted-foreground ${itemEnter}`} style={staggerDelay(3)}>
             Once approved, you&rsquo;ll instantly get access to your
             digital recommendation, so you can start visiting dispensaries
             without delay. Our friendly team and licensed doctors make
             sure every step feels smooth, secure, and completely
             confidential.
-          </motion.p>
+          </p>
 
-          <motion.div variants={itemVariants} className="mt-2 grid grid-cols-3 gap-3">
+          <div className={`mt-2 grid grid-cols-3 gap-3 ${itemEnter}`} style={staggerDelay(4)}>
             {stats.map((stat) => (
               <div
                 key={stat.label}
@@ -248,23 +231,18 @@ export function GetApprovedSection() {
                 <p className="text-xs text-muted-foreground">{stat.label}</p>
               </div>
             ))}
-          </motion.div>
+          </div>
 
-          <motion.div
-            variants={itemVariants}
-            className="flex items-center gap-2 text-sm font-medium text-foreground"
+          <div
+            className={`flex items-center gap-2 text-sm font-medium text-foreground ${itemEnter}`}
+            style={staggerDelay(5)}
           >
             <Lock className="size-4.5 shrink-0 text-primary" />
             Your information is encrypted &amp; HIPAA-compliant
-          </motion.div>
-        </motion.div>
+          </div>
+        </div>
 
-        <motion.div
-          initial={{ opacity: 0, y: 24, scale: 0.97 }}
-          whileInView={{ opacity: 1, y: 0, scale: 1 }}
-          viewport={{ once: true, amount: 0.3 }}
-          transition={{ duration: 0.6, ease: EASE }}
-        >
+        <div className="animate-in fade-in-0 slide-in-from-bottom-4 zoom-in-95 fill-mode-both duration-500 ease-out">
           <Card className="relative overflow-hidden p-2 shadow-xl ring-1 ring-primary/10">
             <div className="dot-pattern pointer-events-none absolute top-0 right-0 h-24 w-24" aria-hidden="true" />
             <div className="absolute inset-x-0 top-0 h-1.5 bg-gradient-to-r from-emerald-500 via-emerald-400 to-amber-400" />
@@ -276,16 +254,12 @@ export function GetApprovedSection() {
                 Plans starting at <span className="text-primary">$55</span> only
               </p>
 
-              <motion.form
+              <form
                 className="mt-7 flex flex-col gap-5"
-                initial="hidden"
-                whileInView="show"
-                viewport={{ once: true, amount: 0.3 }}
-                variants={columnVariants}
                 onSubmit={handleSubmit}
                 noValidate
               >
-                <motion.div variants={fieldVariants} className="grid gap-2">
+                <div className={`grid gap-2 ${fieldEnter}`} style={staggerDelay(0)}>
                   <Label htmlFor="leadName">Name (First &amp; Last)*</Label>
                   <Input
                     id="leadName"
@@ -298,8 +272,8 @@ export function GetApprovedSection() {
                   {errors.name && (
                     <p className="text-sm text-destructive">{errors.name}</p>
                   )}
-                </motion.div>
-                <motion.div variants={fieldVariants} className="grid gap-2">
+                </div>
+                <div className={`grid gap-2 ${fieldEnter}`} style={staggerDelay(1)}>
                   <Label htmlFor="leadEmail">Email*</Label>
                   <Input
                     id="leadEmail"
@@ -313,8 +287,8 @@ export function GetApprovedSection() {
                   {errors.email && (
                     <p className="text-sm text-destructive">{errors.email}</p>
                   )}
-                </motion.div>
-                <motion.div variants={fieldVariants} className="grid gap-2">
+                </div>
+                <div className={`grid gap-2 ${fieldEnter}`} style={staggerDelay(2)}>
                   <Label htmlFor="leadPhone">Phone Number*</Label>
                   <Input
                     id="leadPhone"
@@ -328,8 +302,8 @@ export function GetApprovedSection() {
                   {errors.phone && (
                     <p className="text-sm text-destructive">{errors.phone}</p>
                   )}
-                </motion.div>
-                <motion.div variants={fieldVariants} className="grid gap-1.5">
+                </div>
+                <div className={`grid gap-1.5 ${fieldEnter}`} style={staggerDelay(3)}>
                   <div className="flex items-start gap-2.5">
                     <Checkbox
                       id="leadTermsAccepted"
@@ -351,8 +325,8 @@ export function GetApprovedSection() {
                   {errors.termsAccepted && (
                     <p className="text-sm text-destructive">{errors.termsAccepted}</p>
                   )}
-                </motion.div>
-                <motion.div variants={fieldVariants} className="grid gap-1.5">
+                </div>
+                <div className={`grid gap-1.5 ${fieldEnter}`} style={staggerDelay(4)}>
                   <div className="flex items-start gap-2.5">
                     <Checkbox
                       id="leadMarketingConsent"
@@ -374,16 +348,16 @@ export function GetApprovedSection() {
                   {errors.marketingConsent && (
                     <p className="text-sm text-destructive">{errors.marketingConsent}</p>
                   )}
-                </motion.div>
-                <motion.div variants={fieldVariants}>
+                </div>
+                <div className={fieldEnter} style={staggerDelay(5)}>
                   <Button type="submit" size="xl" className="mt-1 w-full" disabled={submitting}>
                     {submitting ? "Processing..." : "Get Your Card"}
                   </Button>
-                </motion.div>
-              </motion.form>
+                </div>
+              </form>
             </CardContent>
           </Card>
-        </motion.div>
+        </div>
       </Container>
     </section>
   );
