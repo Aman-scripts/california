@@ -89,6 +89,7 @@ export function SiteHeader() {
               fill
               priority
               sizes="144px"
+              quality={60}
               className="object-contain object-left"
             />
           </span>
@@ -165,6 +166,7 @@ export function SiteHeader() {
                     alt="Medical Marijuana Card California"
                     fill
                     sizes="192px"
+                    quality={60}
                     className="object-contain object-left"
                   />
                 </span>
