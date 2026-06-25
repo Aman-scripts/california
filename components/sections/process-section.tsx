@@ -30,10 +30,13 @@ export function ProcessSection() {
               transition={{ duration: 0.6, ease: EASE }}
               className="flex flex-col"
             >
-              <Badge variant="outline" className="gap-1.5 rounded-full bg-card px-3 py-1.5">
-                <span className="size-1.5 rounded-full bg-primary" />
+              <Badge
+                variant="outline"
+                className="h-auto gap-2 rounded-full bg-card px-4 py-2 text-base font-semibold"
+              >
+                <span className="size-2 rounded-full bg-primary" />
                 Our Simple Process
-                <ChevronRight className="size-3.5" />
+                <ChevronRight className="size-4" />
               </Badge>
 
               <h2 className="mt-3 font-heading text-2xl font-bold tracking-tight sm:text-3xl">
@@ -49,11 +52,20 @@ export function ProcessSection() {
                 Follow the three easy steps below to get started.
               </p>
 
-              <div className="mt-4 flex flex-wrap gap-3">
-                <Button size="lg" asChild>
+              <div className="mt-4 flex flex-nowrap items-stretch gap-2 sm:gap-3">
+                <Button
+                  size="lg"
+                  className="min-w-0 flex-1 basis-1/2 justify-center px-2 text-center text-sm whitespace-normal sm:flex-initial sm:basis-auto sm:whitespace-nowrap sm:px-4 sm:text-base"
+                  asChild
+                >
                   <a href="/#get-approved">Apply Your Application</a>
                 </Button>
-                <Button size="lg" variant="outline" className="bg-card" asChild>
+                <Button
+                  size="lg"
+                  variant="outline"
+                  className="min-w-0 flex-1 basis-1/2 justify-center bg-card px-2 text-center text-sm whitespace-normal sm:flex-initial sm:basis-auto sm:whitespace-nowrap sm:px-4 sm:text-base"
+                  asChild
+                >
                   <Link href="/#faq">
                     See More
                     <ChevronRight />
@@ -87,7 +99,7 @@ export function ProcessSection() {
                   initial="hidden"
                   whileInView="show"
                   viewport={{ once: true, amount: 0.4 }}
-                  className="relative w-full max-w-[420px] rounded-2xl bg-card px-6 py-4 shadow-lg"
+                  className="relative mx-auto w-full max-w-[420px] rounded-2xl bg-card px-6 py-4 shadow-lg sm:mx-0"
                 >
                   <span className="absolute -top-3 -left-3 flex size-8 items-center justify-center rounded-full bg-primary text-xs font-bold text-primary-foreground shadow-md">
                     1
@@ -113,7 +125,7 @@ export function ProcessSection() {
                   whileInView="show"
                   viewport={{ once: true, amount: 0.4 }}
                   transition={{ delay: 0.15 }}
-                  className="relative ml-[8%] w-full max-w-[460px] rounded-2xl bg-card px-6 py-4 shadow-lg sm:ml-[18%]"
+                  className="relative mx-auto w-full max-w-[460px] rounded-2xl bg-card px-6 py-4 shadow-lg sm:mx-0 sm:ml-[18%]"
                 >
                   <span className="absolute -top-3 -left-3 flex size-8 items-center justify-center rounded-full bg-primary text-xs font-bold text-primary-foreground shadow-md">
                     2
@@ -149,7 +161,7 @@ export function ProcessSection() {
                   whileInView="show"
                   viewport={{ once: true, amount: 0.4 }}
                   transition={{ delay: 0.3 }}
-                  className="relative ml-[16%] w-full max-w-[420px] rounded-2xl bg-card px-6 py-4 shadow-lg sm:ml-[34%]"
+                  className="relative mx-auto w-full max-w-[420px] rounded-2xl bg-card px-6 py-4 shadow-lg sm:mx-0 sm:ml-[34%]"
                 >
                   <span className="absolute -top-3 -left-3 flex size-8 items-center justify-center rounded-full bg-primary text-xs font-bold text-primary-foreground shadow-md">
                     3
