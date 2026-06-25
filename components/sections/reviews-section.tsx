@@ -10,8 +10,8 @@ import { googleReviewsUrl, reviews } from "@/lib/site-data";
 
 const avatarColors = ["bg-amber-400", "bg-emerald-400", "bg-sky-400", "bg-violet-400"];
 
-const headerEnter = "animate-in fade-in-0 slide-in-from-bottom-4 fill-mode-both duration-500 ease-out";
-const cardEnter = "animate-in fade-in-0 slide-in-from-bottom-6 zoom-in-95 fill-mode-both duration-500 ease-out";
+const headerEnter = "enter-fade-up";
+const cardEnter = "enter-zoom-up";
 const cardHover = "motion-safe:transition-transform motion-safe:duration-300 motion-safe:hover:-translate-y-1.5";
 
 function cardDelay(index: number) {
@@ -76,7 +76,13 @@ export function ReviewsSection() {
               reviews
             </p>
             {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img src="/logo.svg" alt="Google" className="relative mt-3 h-7 w-auto" />
+            <img
+              src="/logo.svg"
+              alt="Google"
+              width={89}
+              height={28}
+              className="relative mt-3 h-7 w-auto"
+            />
             <Button className="relative mt-5 w-full" asChild>
               <a href={googleReviewsUrl} target="_blank" rel="noopener noreferrer">
                 Read More on Google
@@ -113,7 +119,13 @@ export function ReviewsSection() {
                       </div>
                       <span className="flex size-7 shrink-0 items-center justify-center rounded-full bg-background shadow-sm ring-1 ring-foreground/5">
                         {/* eslint-disable-next-line @next/next/no-img-element */}
-                        <img src="/icon.svg" alt="Google" className="size-3.5" />
+                        <img
+                          src="/icon.svg"
+                          alt="Google"
+                          width={14}
+                          height={14}
+                          className="size-3.5"
+                        />
                       </span>
                     </div>
                     <div className="relative flex items-center gap-1.5">

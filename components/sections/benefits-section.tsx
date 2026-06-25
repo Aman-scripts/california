@@ -6,7 +6,7 @@ import { Button } from "@/components/ui/button";
 import { Container } from "@/components/layout/container";
 import { benefits } from "@/lib/site-data";
 
-const cardEnter = "animate-in fade-in-0 slide-in-from-bottom-6 fill-mode-both duration-500 ease-out";
+const cardEnter = "enter-fade-up";
 const cardHover =
   "motion-safe:transition-transform motion-safe:duration-300 motion-safe:hover:-translate-y-2 motion-safe:hover:scale-[1.02]";
 

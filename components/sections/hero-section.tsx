@@ -8,7 +8,7 @@ import { heroBadge, heroFeatures } from "@/lib/site-data";
 const featureIcons = [Clock, DollarSign, Scale];
 const avatarStyles = ["bg-amber-400", "bg-emerald-400", "bg-sky-400", "bg-violet-400"];
 
-const enter = "animate-in fade-in-0 slide-in-from-bottom-6 fill-mode-both duration-700 ease-out";
+const enter = "enter-fade-up";
 
 export function HeroSection() {
   return (
@@ -98,7 +98,7 @@ export function HeroSection() {
         </div>
 
         <div
-          className={`relative mx-auto w-full max-w-sm animate-in fade-in-0 slide-in-from-right-6 fill-mode-both duration-700 ease-out lg:max-w-md [animation-delay:150ms]`}
+          className="enter-fade-right relative mx-auto w-full max-w-sm lg:max-w-md [animation-delay:150ms]"
         >
           <div
             className="absolute -inset-4 rounded-[2.5rem] bg-emerald-400/20 blur-2xl"
@@ -116,7 +116,7 @@ export function HeroSection() {
             />
 
             <div
-              className="absolute top-4 left-4 flex items-center gap-2 rounded-2xl bg-card px-3.5 py-2.5 shadow-lg animate-in fade-in-0 slide-in-from-top-4 fill-mode-both duration-700 ease-out [animation-delay:500ms]"
+              className="enter-fade-top absolute top-4 left-4 flex items-center gap-2 rounded-2xl bg-card px-3.5 py-2.5 shadow-lg [animation-delay:500ms]"
             >
               <span className="flex size-8 shrink-0 items-center justify-center rounded-full bg-amber-100 text-amber-600">
                 <Star className="size-4" />
@@ -129,7 +129,7 @@ export function HeroSection() {
             </div>
 
             <div
-              className="absolute bottom-4 right-4 flex items-center gap-2.5 rounded-2xl bg-card px-3.5 py-2.5 shadow-lg animate-in fade-in-0 slide-in-from-bottom-4 fill-mode-both duration-700 ease-out [animation-delay:650ms]"
+              className="enter-fade-up absolute bottom-4 right-4 flex items-center gap-2.5 rounded-2xl bg-card px-3.5 py-2.5 shadow-lg [animation-delay:650ms]"
             >
               <span className="flex size-8 shrink-0 items-center justify-center rounded-full bg-primary/10 text-primary">
                 <ShieldCheck className="size-4" />

@@ -4,8 +4,7 @@ import { ChevronRight, Clock3, IdCard, Phone, User, Video } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 
-const cardEnter =
-  "animate-in fade-in-0 slide-in-from-bottom-6 zoom-in-95 fill-mode-both duration-700 ease-out";
+const cardEnter = "enter-zoom-up";
 
 const timeMarkers = ["Start", "~10 min", "~20 min", "Approved"];
 
@@ -16,7 +15,7 @@ export function ProcessSection() {
         <div className="relative overflow-hidden rounded-[2rem] border border-dashed border-border bg-muted/30 p-5 sm:p-6 lg:p-8">
           <div className="grid gap-6 lg:grid-cols-[0.8fr_1.2fr] lg:items-stretch lg:gap-8">
             {/* Left: copy + CTAs */}
-            <div className="animate-in fade-in-0 slide-in-from-bottom-4 fill-mode-both flex flex-col duration-700 ease-out">
+            <div className="enter-fade-up flex flex-col">
               <Badge
                 variant="outline"
                 className="h-auto gap-2 rounded-full bg-card px-4 py-2 text-base font-semibold"

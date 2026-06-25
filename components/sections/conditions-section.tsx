@@ -43,8 +43,8 @@ const colorStyles = [
   { bg: "bg-violet-100", text: "text-violet-600", ring: "hover:ring-violet-300/60" },
 ];
 
-const itemEnter = "animate-in fade-in-0 slide-in-from-bottom-4 fill-mode-both duration-500 ease-out";
-const cardEnter = "animate-in fade-in-0 slide-in-from-bottom-3 zoom-in-95 fill-mode-both duration-500 ease-out";
+const itemEnter = "enter-fade-up";
+const cardEnter = "enter-zoom-up";
 const cardHover =
   "motion-safe:transition-transform motion-safe:duration-300 motion-safe:hover:-translate-y-1.5 motion-safe:hover:scale-[1.04]";
 
