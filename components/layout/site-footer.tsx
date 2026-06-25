@@ -83,6 +83,7 @@ export function SiteFooter() {
                   alt="Medical Marijuana Card California"
                   fill
                   sizes="176px"
+                  quality={60}
                   className="object-contain p-0.5"
                 />
               </span>
