@@ -3,7 +3,7 @@ import Image from "next/image";
 
 import { contactInfo } from "@/lib/site-data";
 
-const enter = "animate-in fade-in-0 slide-in-from-bottom-4 fill-mode-both duration-700 ease-out";
+const enter = "enter-fade-up";
 
 const resourceLinks = [
   { label: "Process", href: "/#process" },

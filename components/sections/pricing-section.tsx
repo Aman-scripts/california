@@ -37,7 +37,7 @@ export function PricingSection() {
               <Card
                 key={plan.name}
                 className={cn(
-                  "animate-in fade-in-0 slide-in-from-bottom-8 fill-mode-both pt-0 text-base duration-700",
+                  "enter-fade-up pt-0 text-base",
                   plan.highlighted && "ring-2 ring-primary lg:scale-105"
                 )}
                 style={{ animationDelay: `${index * 120}ms` }}

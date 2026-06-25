@@ -26,8 +26,8 @@ const stats = [
   { value: "100%", label: "Online" },
 ];
 
-const itemEnter = "animate-in fade-in-0 slide-in-from-bottom-4 fill-mode-both duration-500 ease-out";
-const fieldEnter = "animate-in fade-in-0 slide-in-from-bottom-3 fill-mode-both duration-500 ease-out";
+const itemEnter = "enter-fade-up";
+const fieldEnter = "enter-fade-up-sm";
 
 function staggerDelay(index: number) {
   return { animationDelay: `${50 + index * 120}ms` };
@@ -242,7 +242,7 @@ export function GetApprovedSection() {
           </div>
         </div>
 
-        <div className="animate-in fade-in-0 slide-in-from-bottom-4 zoom-in-95 fill-mode-both duration-500 ease-out">
+        <div className="enter-zoom-up">
           <Card className="relative overflow-hidden p-2 shadow-xl ring-1 ring-primary/10">
             <div className="dot-pattern pointer-events-none absolute top-0 right-0 h-24 w-24" aria-hidden="true" />
             <div className="absolute inset-x-0 top-0 h-1.5 bg-gradient-to-r from-emerald-500 via-emerald-400 to-amber-400" />

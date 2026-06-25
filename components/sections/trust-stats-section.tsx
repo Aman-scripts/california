@@ -31,7 +31,7 @@ export function TrustStatsSection() {
           {trustStats.map((stat, index) => (
             <div
               key={stat.label}
-              className="animate-in fade-in-0 slide-in-from-bottom-6 fill-mode-both rounded-2xl bg-gradient-to-br from-emerald-300/70 via-amber-200/60 to-emerald-300/70 p-px duration-700"
+              className="enter-fade-up rounded-2xl bg-gradient-to-br from-emerald-300/70 via-amber-200/60 to-emerald-300/70 p-px"
               style={{ animationDelay: `${index * 100}ms` }}
             >
               <div className="relative h-full overflow-hidden rounded-[15px] bg-card p-6">

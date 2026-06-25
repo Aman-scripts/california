@@ -105,7 +105,7 @@ export function SiteHeader() {
             const content = (
               <>
                 {isActive && (
-                  <span className="absolute inset-0 animate-in rounded-full bg-white/15 fade-in-0 ring-1 ring-white/25 duration-200" />
+                  <span className="enter-fade absolute inset-0 rounded-full bg-white/15 ring-1 ring-white/25" />
                 )}
                 <span className="relative">{link.label}</span>
               </>
