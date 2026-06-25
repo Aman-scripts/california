@@ -44,7 +44,7 @@ export function HeroSection() {
               ))}
             </div>
             <p className="text-sm font-medium text-emerald-100/80">
-              Trusted by 25,000+ Happy Patients
+              Trusted by 1,000+ Happy Patients
             </p>
           </div>
 
@@ -87,35 +87,21 @@ export function HeroSection() {
           </div>
 
           <div className={`flex flex-wrap items-end gap-3 pt-2 ${enter} [animation-delay:650ms]`}>
-            <motion.div
-              whileHover={prefersReducedMotion ? undefined : { scale: 1.03 }}
-              whileTap={prefersReducedMotion ? undefined : { scale: 0.97 }}
-              className="inline-block"
+            <Button
+              size="xl"
+              variant="outline"
+              className="border-white/25 bg-transparent text-white hover:bg-white/10 hover:text-white"
+              asChild
             >
-              <Button
-                size="xl"
-                variant="outline"
-                className="border-white/25 bg-transparent text-white hover:bg-white/10"
-                asChild
-              >
-                <Link href="/#benefits">Check Benefits</Link>
-              </Button>
-            </motion.div>
-            <motion.div
-              whileHover={prefersReducedMotion ? undefined : { scale: 1.03 }}
-              whileTap={prefersReducedMotion ? undefined : { scale: 0.97 }}
-              className="inline-block"
+              <Link href="/#benefits">Check Benefits</Link>
+            </Button>
+            <Button
+              size="xl"
+              className="bg-emerald-400 text-emerald-950 hover:bg-emerald-300"
+              asChild
             >
-              <Button
-                size="xl"
-                className="bg-emerald-400 text-emerald-950 hover:bg-emerald-300"
-                asChild
-              >
-                <Link href="/contact-us#book-appointment">
-                  Apply Your Application
-                </Link>
-              </Button>
-            </motion.div>
+              <a href="/#get-approved">Apply Your Application</a>
+            </Button>
           </div>
         </div>
 
@@ -148,7 +134,7 @@ export function HeroSection() {
                 <Star className="size-4" />
               </span>
               <p className="text-xs font-semibold text-foreground">
-                Trusted by 25,000+
+                Trusted by 1,000+
                 <br />
                 Patients
               </p>

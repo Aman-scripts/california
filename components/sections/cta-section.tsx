@@ -1,5 +1,3 @@
-import Link from "next/link";
-
 import { Button } from "@/components/ui/button";
 import { Container } from "@/components/layout/container";
 
@@ -16,9 +14,7 @@ export function CtaSection() {
             24-48 hours, with a 100% money-back guarantee.
           </p>
           <Button size="xl" variant="secondary" asChild>
-            <Link href="/contact-us#book-appointment">
-              Apply Your Application
-            </Link>
+            <a href="/#get-approved">Apply Your Application</a>
           </Button>
         </div>
       </Container>

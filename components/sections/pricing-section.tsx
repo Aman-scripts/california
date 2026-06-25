@@ -1,4 +1,3 @@
-import Link from "next/link";
 import { Check, ChevronRight, Flag, ShieldCheck, Star, Zap } from "lucide-react";
 
 import { Badge } from "@/components/ui/badge";
@@ -31,7 +30,7 @@ export function PricingSection() {
           </p>
         </div>
 
-        <div className="mt-14 grid items-start gap-8 sm:grid-cols-3">
+        <div className="mt-14 grid items-stretch gap-8 sm:grid-cols-3">
           {pricingPlans.map((plan, index) => {
             const Icon = planIcons[index];
             return (
@@ -78,7 +77,7 @@ export function PricingSection() {
                   </div>
                 </CardHeader>
                 <Separator />
-                <CardContent>
+                <CardContent className="flex-1">
                   <ul className="space-y-3">
                     {plan.features.map((feature) => (
                       <li key={feature} className="flex items-start gap-2.5 text-sm">
@@ -95,10 +94,10 @@ export function PricingSection() {
                     variant={plan.highlighted ? "default" : "secondary"}
                     asChild
                   >
-                    <Link href="/contact-us#book-appointment">
+                    <a href="/#get-approved">
                       Get Started
                       <ChevronRight />
-                    </Link>
+                    </a>
                   </Button>
                   <p className="text-center text-xs text-muted-foreground">
                     One-time fee. No recurring charges.

@@ -99,7 +99,7 @@ export type TrustStat = {
 export const trustStats: TrustStat[] = [
   {
     label: "Patients Served",
-    value: "25,000+",
+    value: "1,000+",
     description: "Californians approved through our licensed telehealth network.",
   },
   {

@@ -47,6 +47,7 @@ function useActiveSection(ids: string[]) {
       .filter((el): el is HTMLElement => el !== null);
 
     if (elements.length === 0) {
+      setActiveId(null);
       return;
     }
 
@@ -98,14 +99,11 @@ export function SiteHeader() {
             const isHashLink = link.href.startsWith("/#");
             const id = link.href.replace("/#", "");
             const isActive = isHashLink ? activeId === id : pathname === link.href;
-            return (
-              <Link
-                key={link.href}
-                href={link.href}
-                className={`relative rounded-full px-3.5 py-1.5 text-sm font-medium transition-colors ${
-                  isActive ? "text-white" : "text-white/85 hover:text-white"
-                }`}
-              >
+            const className = `relative rounded-full px-3.5 py-1.5 text-sm font-medium transition-colors ${
+              isActive ? "text-white" : "text-white/85 hover:text-white"
+            }`;
+            const content = (
+              <>
                 {isActive && (
                   <motion.span
                     layoutId="header-active-pill"
@@ -114,6 +112,21 @@ export function SiteHeader() {
                   />
                 )}
                 <span className="relative">{link.label}</span>
+              </>
+            );
+
+            // Hash links use a plain anchor instead of next/link: this Next.js
+            // build's segment-cache router can double up the hash fragment
+            // (e.g. /#process#process) when a same-page hash link's prefetched
+            // route is navigated to more than once. Native anchor navigation
+            // never goes through the client router, so it can't hit that bug.
+            return isHashLink ? (
+              <a key={link.href} href={link.href} className={className}>
+                {content}
+              </a>
+            ) : (
+              <Link key={link.href} href={link.href} className={className}>
+                {content}
               </Link>
             );
           })}
@@ -122,7 +135,7 @@ export function SiteHeader() {
         <div className="hidden items-center gap-5 lg:flex">
           <a
             href={contactInfo.phoneHref}
-            className="flex items-center gap-1.5 text-sm font-semibold text-emerald-300 transition-colors hover:text-emerald-200"
+            className="flex items-center gap-1.5 text-sm font-semibold text-white transition-colors hover:text-emerald-200"
           >
             <Phone className="size-4" />
             {contactInfo.phone}
@@ -132,7 +145,7 @@ export function SiteHeader() {
             className="rounded-full bg-amber-400 text-amber-950 shadow-md shadow-amber-900/20 hover:bg-amber-400 hover:shadow-lg hover:shadow-amber-900/30 hover:scale-105"
             asChild
           >
-            <Link href="/contact-us#book-appointment">Get My Card</Link>
+            <a href="/#get-approved">Get My Card</a>
           </Button>
         </div>
 
@@ -161,16 +174,24 @@ export function SiteHeader() {
               </SheetTitle>
             </SheetHeader>
             <nav className="flex flex-col gap-1 px-4">
-              {navLinks.map((link) => (
-                <SheetClose asChild key={link.href}>
-                  <Link
-                    href={link.href}
-                    className="rounded-md px-2 py-2.5 text-sm font-medium text-foreground transition-colors hover:bg-muted"
-                  >
-                    {link.label}
-                  </Link>
-                </SheetClose>
-              ))}
+              {navLinks.map((link) => {
+                const isHashLink = link.href.startsWith("/#");
+                const className =
+                  "rounded-md px-2 py-2.5 text-sm font-medium text-foreground transition-colors hover:bg-muted";
+                return (
+                  <SheetClose asChild key={link.href}>
+                    {isHashLink ? (
+                      <a href={link.href} className={className}>
+                        {link.label}
+                      </a>
+                    ) : (
+                      <Link href={link.href} className={className}>
+                        {link.label}
+                      </Link>
+                    )}
+                  </SheetClose>
+                );
+              })}
             </nav>
             <div className="mt-auto flex flex-col gap-2 p-4">
               <a
