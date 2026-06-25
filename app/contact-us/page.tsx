@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 
-import { ContactPageContent } from "@/components/sections/contact-page-content";
+import { ContactPageContentDummy } from "@/components/sections/contact-page-content-dummy";
 
 export const metadata: Metadata = {
   title: "Contact Us | Medical Marijuana Card California",
@@ -9,5 +9,5 @@ export const metadata: Metadata = {
 };
 
 export default function ContactUsPage() {
-  return <ContactPageContent />;
+  return <ContactPageContentDummy />;
 }

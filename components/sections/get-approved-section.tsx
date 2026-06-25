@@ -11,6 +11,7 @@ import { Checkbox } from "@/components/ui/checkbox";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Container } from "@/components/layout/container";
+import { siteConfig } from "@/lib/site-data";
 
 declare global {
   interface Window {
@@ -20,7 +21,7 @@ declare global {
 
 const EASE = [0.22, 1, 0.36, 1] as const;
 
-const HEALLY_UTM_SOURCE = "utm-california";
+const HEALLY_UTM_SOURCE = `${siteConfig.url}/`;
 
 const stats = [
   { value: "15-30 min", label: "Avg. Wait" },
@@ -187,7 +188,7 @@ export function GetApprovedSection() {
       utm_source: HEALLY_UTM_SOURCE,
     });
 
-    window.location.href = `https://mymmj.getheally.com/patient_admin/prefill?redirect=sched&preset=${preset}&utm_source=${HEALLY_UTM_SOURCE}`;
+    window.location.href = `https://mymmj.getheally.com/patient_admin/prefill?redirect=sched&preset=${preset}&utm_source=${encodeURIComponent(HEALLY_UTM_SOURCE)}`;
   }
 
   return (
@@ -331,29 +332,6 @@ export function GetApprovedSection() {
                 <motion.div variants={fieldVariants} className="grid gap-1.5">
                   <div className="flex items-start gap-2.5">
                     <Checkbox
-                      id="leadMarketingConsent"
-                      name="leadMarketingConsent"
-                      className="mt-0.5"
-                      checked={marketingConsent}
-                      onCheckedChange={(checked) =>
-                        handleMarketingConsentChange(checked === true)
-                      }
-                      aria-invalid={!!errors.marketingConsent}
-                    />
-                    <Label
-                      htmlFor="leadMarketingConsent"
-                      className="text-sm font-normal text-muted-foreground"
-                    >
-                      I agree to receive emails with educational content, exclusive offers, partnership discounts, and marketing updates
-                    </Label>
-                  </div>
-                  {errors.marketingConsent && (
-                    <p className="text-sm text-destructive">{errors.marketingConsent}</p>
-                  )}
-                </motion.div>
-                <motion.div variants={fieldVariants} className="grid gap-1.5">
-                  <div className="flex items-start gap-2.5">
-                    <Checkbox
                       id="leadTermsAccepted"
                       name="leadTermsAccepted"
                       className="mt-0.5"
@@ -372,6 +350,29 @@ export function GetApprovedSection() {
                   </div>
                   {errors.termsAccepted && (
                     <p className="text-sm text-destructive">{errors.termsAccepted}</p>
+                  )}
+                </motion.div>
+                <motion.div variants={fieldVariants} className="grid gap-1.5">
+                  <div className="flex items-start gap-2.5">
+                    <Checkbox
+                      id="leadMarketingConsent"
+                      name="leadMarketingConsent"
+                      className="mt-0.5"
+                      checked={marketingConsent}
+                      onCheckedChange={(checked) =>
+                        handleMarketingConsentChange(checked === true)
+                      }
+                      aria-invalid={!!errors.marketingConsent}
+                    />
+                    <Label
+                      htmlFor="leadMarketingConsent"
+                      className="text-sm font-normal text-muted-foreground"
+                    >
+                      I agree to receive emails with educational content, exclusive offers, partnership discounts, and marketing updates
+                    </Label>
+                  </div>
+                  {errors.marketingConsent && (
+                    <p className="text-sm text-destructive">{errors.marketingConsent}</p>
                   )}
                 </motion.div>
                 <motion.div variants={fieldVariants}>
