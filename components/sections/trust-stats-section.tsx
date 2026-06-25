@@ -38,7 +38,7 @@ export function TrustStatsSection() {
                 />
                 <AnimatedCounter
                   value={stat.value}
-                  className="relative bg-gradient-to-r from-emerald-600 to-amber-500 bg-clip-text font-heading text-4xl font-bold text-transparent"
+                  className="relative font-heading text-4xl font-bold text-primary"
                 />
                 <div className="relative my-4 h-px bg-border" />
                 <p className="relative font-heading font-semibold">{stat.label}</p>

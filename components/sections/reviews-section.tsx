@@ -2,7 +2,7 @@
 
 import { useRef } from "react";
 import { motion, type Variants } from "framer-motion";
-import { BadgeCheck, ChevronLeft, ChevronRight, Quote, Star } from "lucide-react";
+import { BadgeCheck, ChevronLeft, ChevronRight, Plus, Quote, Star } from "lucide-react";
 
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -74,18 +74,20 @@ export function ReviewsSection() {
             transition={{ duration: 0.5, ease: EASE }}
             className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-emerald-50 via-card to-amber-50 p-7 shadow-md ring-1 ring-foreground/5"
           >
-            <Quote className="absolute -top-3 -right-3 size-24 text-primary/5" />
+            <Quote className="absolute top-3 right-3 size-24 text-primary/15" />
             <p className="relative font-heading text-2xl font-bold tracking-tight uppercase">
               Excellent
             </p>
             <div className="relative mt-2">
               <Stars size="size-6" />
             </div>
-            <p className="relative mt-2 text-sm text-muted-foreground">
-              Based on{" "}
-              <span className="font-semibold text-foreground">
-                {reviews.length} reviews
+            <p className="relative mt-2 flex flex-wrap items-center gap-1 text-sm text-muted-foreground">
+              Based on
+              <span className="inline-flex items-center gap-0.5 font-semibold text-foreground">
+                450
+                <Plus className="size-3.5" />
               </span>
+              reviews
             </p>
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img src="/logo.svg" alt="Google" className="relative mt-3 h-7 w-auto" />
@@ -116,7 +118,7 @@ export function ReviewsSection() {
                     transition={{ duration: 0.25, ease: EASE }}
                     className="group relative flex w-[300px] shrink-0 snap-start flex-col gap-3 overflow-hidden rounded-2xl bg-card p-5 shadow-sm ring-1 ring-foreground/5 transition-shadow duration-300 hover:shadow-xl hover:ring-primary/15"
                   >
-                    <Quote className="absolute -top-2 -right-2 size-16 text-foreground/5 transition-transform duration-300 group-hover:scale-110" />
+                    <Quote className="absolute top-2 right-2 size-16 text-foreground/15 transition-transform duration-300 group-hover:scale-110" />
                     <div className="relative flex items-start justify-between gap-2">
                       <div className="flex items-center gap-3">
                         <span

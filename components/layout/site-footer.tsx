@@ -1,11 +1,9 @@
 "use client";
 
-import { motion, useReducedMotion, type Variants } from "framer-motion";
+import { motion, type Variants } from "framer-motion";
+import { Mail, Phone } from "lucide-react";
 import Image from "next/image";
-import { AtSign, Camera, Play, ThumbsUp } from "lucide-react";
 
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
 import { contactInfo } from "@/lib/site-data";
 
 const EASE = [0.22, 1, 0.36, 1] as const;
@@ -23,13 +21,6 @@ const legalLinks = [
   { label: "Privacy Policy", href: "/privacy-policy" },
   { label: "Refund Policy", href: "/refund-policy" },
   { label: "Shipment Policy & Disclaimer", href: "/shipment-policy-and-disclaimer" },
-];
-
-const socialLinks = [
-  { label: "Instagram", icon: Camera, href: "#" },
-  { label: "Twitter", icon: AtSign, href: "#" },
-  { label: "Facebook", icon: ThumbsUp, href: "#" },
-  { label: "YouTube", icon: Play, href: "#" },
 ];
 
 const columnVariants: Variants = {
@@ -88,7 +79,6 @@ function FooterLinkColumn({
 
 export function SiteFooter() {
   const year = new Date().getFullYear();
-  const prefersReducedMotion = useReducedMotion();
 
   return (
     <div className="cv-auto relative z-20 bg-background pt-4 sm:pt-10">
@@ -124,88 +114,49 @@ export function SiteFooter() {
         </div>
 
         <div className="relative z-10 mx-auto max-w-[1200px] px-4 pt-10 pb-[max(1.5rem,env(safe-area-inset-bottom))] sm:px-6 sm:pt-14 md:pt-16 lg:px-8">
-          <div className="grid gap-10 sm:grid-cols-2 lg:grid-cols-[1.3fr_1fr_1fr]">
+          <div className="flex flex-col gap-10 sm:flex-row sm:items-start sm:justify-between">
             <motion.div
+              className="flex flex-col items-start gap-4"
               initial={{ opacity: 1, y: 16 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={scrollViewportTight}
               transition={{ duration: 0.8, ease: EASE }}
             >
-              <p className="text-xs font-semibold tracking-wide text-emerald-200/70 uppercase">
-                Join Our Newsletter
-              </p>
-              <p className="mt-2 max-w-sm text-sm text-white/70">
-                Get California MMJ news, renewal reminders, and seasonal
-                offers sent to your inbox.
-              </p>
-              <form className="mt-4 flex max-w-sm gap-2">
-                <Input
-                  type="email"
-                  placeholder="Your email"
-                  className="min-w-0 flex-1 border-white/15 bg-white/5 text-white placeholder:text-white/40"
+              <span className="relative block h-10 w-44 shrink-0 rounded-md bg-white px-3 py-1.5">
+                <Image
+                  src="/logo.png"
+                  alt="Medical Marijuana Card California"
+                  fill
+                  className="object-contain p-0.5"
                 />
-                <Button type="submit" variant="secondary" className="shrink-0 rounded-lg">
-                  Join Now
-                </Button>
-              </form>
+              </span>
 
-              <div className="mt-6 flex items-center gap-2.5">
-                {socialLinks.map((social) => {
-                  const Icon = social.icon;
-                  return (
-                    <motion.a
-                      key={social.label}
-                      href={social.href}
-                      aria-label={social.label}
-                      className="flex size-9 items-center justify-center rounded-lg border border-white/15 bg-white/5 text-white/80"
-                      whileHover={
-                        prefersReducedMotion
-                          ? { color: "#fff" }
-                          : { y: -2, backgroundColor: "rgba(255,255,255,0.12)" }
-                      }
-                      transition={{ duration: 0.2, ease: EASE }}
-                    >
-                      <Icon className="size-4" />
-                    </motion.a>
-                  );
-                })}
+              <div className="flex flex-col items-start gap-1.5 text-base font-medium">
+                <a
+                  href={contactInfo.phoneHref}
+                  className="inline-flex items-center gap-2 text-white hover:text-emerald-300"
+                >
+                  <Phone className="size-4 shrink-0" />
+                  {contactInfo.phone}
+                </a>
+                <a
+                  href={`mailto:${contactInfo.email}`}
+                  className="inline-flex items-center gap-2 text-white hover:text-emerald-300"
+                >
+                  <Mail className="size-4 shrink-0" />
+                  {contactInfo.email}
+                </a>
               </div>
             </motion.div>
 
-            <FooterLinkColumn heading="Resources" links={resourceLinks} />
-            <FooterLinkColumn heading="Legal" links={legalLinks} />
+            <div className="grid grid-cols-2 gap-10 sm:gap-16">
+              <FooterLinkColumn heading="Resources" links={resourceLinks} />
+              <FooterLinkColumn heading="Legal" links={legalLinks} />
+            </div>
           </div>
 
-          <motion.div
-            className="mt-10 flex flex-col items-center gap-4 border-t border-white/20 pt-6 sm:mt-14 sm:flex-row sm:items-center sm:justify-between sm:pt-8"
-            initial={{ opacity: 1, scaleX: 0.85 }}
-            whileInView={{ opacity: 1, scaleX: 1 }}
-            viewport={scrollViewportTight}
-            transition={{ duration: 0.9, ease: EASE, delay: 0.1 }}
-            style={{ transformOrigin: "center" }}
-          >
-            <span className="relative block h-10 w-44 shrink-0 rounded-md bg-white px-3 py-1.5">
-              <Image
-                src="/logo.png"
-                alt="Medical Marijuana Card California"
-                fill
-                className="object-contain p-0.5"
-              />
-            </span>
-
-            <div className="flex flex-wrap items-center justify-center gap-x-3 gap-y-1.5 text-base font-medium text-white/90">
-              <a href={contactInfo.phoneHref} className="hover:text-emerald-300">
-                {contactInfo.phone}
-              </a>
-              <span className="hidden text-white/40 sm:inline">&middot;</span>
-              <a href={`mailto:${contactInfo.email}`} className="hover:text-emerald-300">
-                {contactInfo.email}
-              </a>
-            </div>
-          </motion.div>
-
           <motion.p
-            className="mt-5 text-center text-xs text-white/70 sm:text-[13px]"
+            className="mt-10 border-t border-white/20 pt-6 text-center text-xs text-white/70 sm:mt-14 sm:pt-8 sm:text-[13px]"
             initial={{ opacity: 1, y: 8 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={scrollViewportTight}
@@ -213,8 +164,11 @@ export function SiteFooter() {
           >
             This website does not sell medicine nor controlled substances. It
             is a network of doctors and nurse practitioners, not a pharmacy
-            or dispensary. &copy; {year} Medical Marijuana Card California.
-            All Rights Reserved.
+            or dispensary.
+            <span className="mt-1 block">
+              &copy; {year} Medical Marijuana Card California. All Rights
+              Reserved.
+            </span>
           </motion.p>
         </div>
       </motion.footer>

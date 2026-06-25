@@ -40,7 +40,11 @@ export function CitiesSection() {
 
         {cities.length > INITIAL_COUNT && (
           <div className="mt-8 text-center">
-            <Button variant="secondary" onClick={() => setShowAll((v) => !v)}>
+            <Button
+              size="xl"
+              className="bg-white text-emerald-950 hover:bg-white/90"
+              onClick={() => setShowAll((v) => !v)}
+            >
               {showAll ? "Show Less" : "Load More"}
             </Button>
           </div>

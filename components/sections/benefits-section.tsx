@@ -2,7 +2,6 @@
 
 import { motion, type Variants } from "framer-motion";
 import Image from "next/image";
-import Link from "next/link";
 import { Percent, Scale, ShieldCheck, Sprout } from "lucide-react";
 
 import { Badge } from "@/components/ui/badge";
@@ -161,7 +160,7 @@ export function BenefitsSection() {
 
         <div className="mt-10 text-center">
           <Button size="xl" asChild>
-            <Link href="/contact-us#book-appointment">Get MMJ Card Now</Link>
+            <a href="/#get-approved">Get MMJ Card Now</a>
           </Button>
         </div>
       </Container>

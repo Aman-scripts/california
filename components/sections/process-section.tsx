@@ -51,9 +51,7 @@ export function ProcessSection() {
 
               <div className="mt-4 flex flex-wrap gap-3">
                 <Button size="lg" asChild>
-                  <Link href="/contact-us#book-appointment">
-                    Apply Your Application
-                  </Link>
+                  <a href="/#get-approved">Apply Your Application</a>
                 </Button>
                 <Button size="lg" variant="outline" className="bg-card" asChild>
                   <Link href="/#faq">
