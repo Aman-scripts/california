@@ -240,6 +240,44 @@
   .enter-zoom-up {
     animation: enter-zoom-up 0.5s ease-out both;
   }
+
+  /*
+   * Scroll-triggered reveal: elements carrying an `enter-*` class inside
+   * (or on) a `.reveal-group` start paused at their first frame, and only
+   * start playing once `.reveal-group` gains `is-visible` (toggled by the
+   * <Reveal> component when it scrolls into view). This restores the old
+   * "animate as you scroll" feel without needing a JS animation library —
+   * one IntersectionObserver per group, plain CSS for the rest.
+   */
+  .reveal-group .enter-fade,
+  .reveal-group .enter-fade-up,
+  .reveal-group .enter-fade-up-sm,
+  .reveal-group .enter-fade-right,
+  .reveal-group .enter-fade-top,
+  .reveal-group .enter-zoom-up,
+  .reveal-group.enter-fade,
+  .reveal-group.enter-fade-up,
+  .reveal-group.enter-fade-up-sm,
+  .reveal-group.enter-fade-right,
+  .reveal-group.enter-fade-top,
+  .reveal-group.enter-zoom-up {
+    animation-play-state: paused;
+  }
+
+  .reveal-group.is-visible .enter-fade,
+  .reveal-group.is-visible .enter-fade-up,
+  .reveal-group.is-visible .enter-fade-up-sm,
+  .reveal-group.is-visible .enter-fade-right,
+  .reveal-group.is-visible .enter-fade-top,
+  .reveal-group.is-visible .enter-zoom-up,
+  .reveal-group.is-visible.enter-fade,
+  .reveal-group.is-visible.enter-fade-up,
+  .reveal-group.is-visible.enter-fade-up-sm,
+  .reveal-group.is-visible.enter-fade-right,
+  .reveal-group.is-visible.enter-fade-top,
+  .reveal-group.is-visible.enter-zoom-up {
+    animation-play-state: running;
+  }
 }
 
 @layer utilities {
@@ -269,7 +307,22 @@
       radial-gradient(at 0% 100%, rgba(16, 185, 129, 0.1) 0, transparent 50%);
   }
 
+  /*
+   * The animated grid/dot backgrounds pan their pattern using `transform`
+   * on an oversized ::before pseudo-element, not `background-position` on
+   * the element itself. Animating `background-position` forces a full
+   * repaint on every frame for as long as the page is open; `transform`
+   * runs on the compositor (GPU) thread and costs effectively nothing on
+   * the main thread.
+   */
   .bg-grid-faint {
+    position: relative;
+    overflow: hidden;
+  }
+  .bg-grid-faint::before {
+    content: "";
+    position: absolute;
+    inset: -32px;
     background-image: linear-gradient(
         to right,
         rgba(15, 70, 50, 0.22) 1px,
@@ -277,6 +330,9 @@
       ),
       linear-gradient(to bottom, rgba(15, 70, 50, 0.22) 1px, transparent 1px);
     background-size: 32px 32px;
+    animation: grid-pan 6s linear infinite;
+    will-change: transform;
+    pointer-events: none;
   }
 
   .dot-pattern {
@@ -295,11 +351,30 @@
   }
 
   .bg-dot-grid {
+    position: relative;
+    overflow: hidden;
+  }
+  .bg-dot-grid::before {
+    content: "";
+    position: absolute;
+    inset: -32px;
     background-image: radial-gradient(
       circle,
       rgba(15, 70, 50, 0.28) 1.5px,
       transparent 1.5px
     );
     background-size: 32px 32px;
+    animation: grid-pan 9s linear infinite;
+    will-change: transform;
+    pointer-events: none;
+  }
+}
+
+@keyframes grid-pan {
+  from {
+    transform: translate3d(0, 0, 0);
+  }
+  to {
+    transform: translate3d(32px, 32px, 0);
   }
 }

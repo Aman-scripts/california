@@ -1,6 +1,7 @@
 import { Mail, Phone } from "lucide-react";
 import Image from "next/image";
 
+import { Reveal } from "@/components/reveal";
 import { contactInfo } from "@/lib/site-data";
 
 const enter = "enter-fade-up";
@@ -52,7 +53,7 @@ export function SiteFooter() {
   const year = new Date().getFullYear();
 
   return (
-    <div className="cv-auto relative z-20 bg-background pt-4 sm:pt-10">
+    <div className="relative z-20 bg-background pt-4 sm:pt-10">
       <footer className="relative overflow-hidden rounded-t-[2rem] border border-b-0 border-white/10 bg-gradient-to-br from-emerald-950 via-emerald-900 to-emerald-950 sm:rounded-t-[3rem] md:rounded-t-[3.5rem]">
         <div className="relative flex items-center justify-center overflow-hidden py-10 sm:py-14 md:py-16">
           <div
@@ -67,16 +68,17 @@ export function SiteFooter() {
             className="bg-noise pointer-events-none absolute inset-0 opacity-[0.12] mix-blend-overlay"
             aria-hidden="true"
           />
-          <span
+          <Reveal
+            as="span"
             className={`relative bg-gradient-to-b from-white via-emerald-50 to-emerald-200/60 bg-clip-text px-4 text-center font-heading text-[3.2rem] leading-none font-bold tracking-tight text-transparent sm:text-[5.5rem] md:text-[7rem] ${enter}`}
           >
             CALIFORNIA
-          </span>
+          </Reveal>
         </div>
 
         <div className="relative z-10 mx-auto max-w-[1200px] px-4 pt-10 pb-[max(1.5rem,env(safe-area-inset-bottom))] sm:px-6 sm:pt-14 md:pt-16 lg:px-8">
           <div className="flex flex-col gap-10 sm:flex-row sm:items-start sm:justify-between">
-            <div className={`flex flex-col items-start gap-4 ${enter}`}>
+            <Reveal as="div" className={`flex flex-col items-start gap-4 ${enter}`}>
               <span className="relative block h-10 w-44 shrink-0 rounded-md bg-white px-3 py-1.5">
                 <Image
                   src="/logo.png"
@@ -104,7 +106,7 @@ export function SiteFooter() {
                   {contactInfo.email}
                 </a>
               </div>
-            </div>
+            </Reveal>
 
             <div className="grid grid-cols-2 gap-10 sm:gap-16">
               <FooterLinkColumn heading="Resources" links={resourceLinks} />
@@ -112,7 +114,8 @@ export function SiteFooter() {
             </div>
           </div>
 
-          <p
+          <Reveal
+            as="p"
             className={`mt-10 border-t border-white/20 pt-6 text-center text-xs text-white/70 sm:mt-14 sm:pt-8 sm:text-[13px] ${enter}`}
           >
             This website does not sell medicine nor controlled substances. It
@@ -122,7 +125,7 @@ export function SiteFooter() {
               &copy; {year} Medical Marijuana Card California. All Rights
               Reserved.
             </span>
-          </p>
+          </Reveal>
         </div>
       </footer>
     </div>

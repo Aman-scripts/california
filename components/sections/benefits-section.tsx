@@ -4,6 +4,7 @@ import { Percent, Scale, ShieldCheck, Sprout } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Container } from "@/components/layout/container";
+import { Reveal } from "@/components/reveal";
 import { benefits } from "@/lib/site-data";
 
 const cardEnter = "enter-fade-up";
@@ -18,7 +19,7 @@ export function BenefitsSection() {
   const [taxSavings, possessionLimits, cultivation, dispensaryAccess] = benefits;
 
   return (
-    <section id="benefits" className="cv-auto bg-dot-grid bg-muted/40 py-20 sm:py-28">
+    <section id="benefits" className="bg-dot-grid bg-muted/40 py-20 sm:py-28">
       <Container>
         <div className="mx-auto max-w-2xl text-center">
           <h2 className="font-heading text-3xl font-semibold tracking-tight sm:text-4xl">
@@ -31,7 +32,7 @@ export function BenefitsSection() {
           </p>
         </div>
 
-        <div className="mt-14 grid grid-cols-1 gap-4 sm:grid-cols-3">
+        <Reveal as="div" className="mt-14 grid grid-cols-1 gap-4 sm:grid-cols-3">
           {/* Tax Savings - wide card */}
           <div
             className={`relative col-span-1 overflow-hidden rounded-3xl bg-gradient-to-br from-emerald-200 to-emerald-50 p-6 shadow-md ring-1 ring-emerald-900/10 sm:col-span-2 sm:p-8 ${cardEnter} ${cardHover}`}
@@ -122,7 +123,7 @@ export function BenefitsSection() {
               {cultivation.description}
             </p>
           </div>
-        </div>
+        </Reveal>
 
         <div className="mt-10 text-center">
           <Button size="xl" asChild>

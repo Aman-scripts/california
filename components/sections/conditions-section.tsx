@@ -19,6 +19,7 @@ import {
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Container } from "@/components/layout/container";
+import { Reveal } from "@/components/reveal";
 import { qualifyingConditions } from "@/lib/site-data";
 
 const conditionIcons = [
@@ -58,11 +59,11 @@ function cardDelay(index: number) {
 
 export function ConditionsSection() {
   return (
-    <section className="cv-auto py-20 sm:py-28">
+    <section className="py-20 sm:py-28">
       <Container>
         <div className="grid items-start gap-12 lg:grid-cols-[0.85fr_1.15fr] lg:gap-16">
           {/* Left: copy + CTA */}
-          <div>
+          <Reveal as="div">
             <div className={itemEnter} style={itemDelay(0)}>
               <Badge
                 variant="outline"
@@ -102,10 +103,10 @@ export function ConditionsSection() {
                 <Link href="/contact-us#book-appointment">Check If You Qualify</Link>
               </Button>
             </div>
-          </div>
+          </Reveal>
 
           {/* Right: conditions grid */}
-          <div className="bg-grid-faint grid grid-cols-2 gap-4 rounded-3xl bg-muted/40 p-4 sm:grid-cols-3 sm:p-6">
+          <Reveal as="div" className="bg-grid-faint grid grid-cols-2 gap-4 rounded-3xl bg-muted/40 p-4 sm:grid-cols-3 sm:p-6">
             {qualifyingConditions.map((condition, index) => {
               const Icon = conditionIcons[index % conditionIcons.length];
               const style = colorStyles[index % colorStyles.length];
@@ -124,7 +125,7 @@ export function ConditionsSection() {
                 </div>
               );
             })}
-          </div>
+          </Reveal>
         </div>
       </Container>
     </section>

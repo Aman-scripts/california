@@ -39,7 +39,7 @@ export function AnimatedCounter({
           observer.disconnect();
         }
       },
-      { rootMargin: "0px 0px -40px 0px" }
+      { rootMargin: "0px" }
     );
     observer.observe(el);
     return () => observer.disconnect();
