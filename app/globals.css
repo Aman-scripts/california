@@ -317,11 +317,13 @@
    */
   .bg-grid-faint {
     position: relative;
+    z-index: 0;
     overflow: hidden;
   }
   .bg-grid-faint::before {
     content: "";
     position: absolute;
+    z-index: -1;
     inset: -32px;
     background-image: linear-gradient(
         to right,
@@ -352,11 +354,13 @@
 
   .bg-dot-grid {
     position: relative;
+    z-index: 0;
     overflow: hidden;
   }
   .bg-dot-grid::before {
     content: "";
     position: absolute;
+    z-index: -1;
     inset: -32px;
     background-image: radial-gradient(
       circle,
