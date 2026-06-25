@@ -3,6 +3,7 @@ import { ChevronRight, Clock3, IdCard, Phone, User, Video } from "lucide-react";
 
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
+import { Reveal } from "@/components/reveal";
 
 const cardEnter = "enter-zoom-up";
 
@@ -10,12 +11,12 @@ const timeMarkers = ["Start", "~10 min", "~20 min", "Approved"];
 
 export function ProcessSection() {
   return (
-    <section id="process" className="cv-auto py-10 sm:py-14">
+    <section id="process" className="py-10 sm:py-14">
       <div className="mx-auto max-w-[1400px] px-4 sm:px-6 lg:px-10">
         <div className="relative overflow-hidden rounded-[2rem] border border-dashed border-border bg-muted/30 p-5 sm:p-6 lg:p-8">
           <div className="grid gap-6 lg:grid-cols-[0.8fr_1.2fr] lg:items-stretch lg:gap-8">
             {/* Left: copy + CTAs */}
-            <div className="enter-fade-up flex flex-col">
+            <Reveal className="enter-fade-up flex flex-col">
               <Badge
                 variant="outline"
                 className="h-auto gap-2 rounded-full bg-card px-4 py-2 text-base font-semibold"
@@ -74,10 +75,10 @@ export function ProcessSection() {
                   requirements
                 </p>
               </div>
-            </div>
+            </Reveal>
 
             {/* Right: ascending milestone staircase */}
-            <div className="bg-grid-faint relative overflow-hidden rounded-2xl p-3 sm:p-4">
+            <Reveal className="bg-grid-faint relative overflow-hidden rounded-2xl p-3 sm:p-4">
               <div className="flex flex-col gap-5 sm:gap-6">
                 {/* Step 1 */}
                 <div
@@ -154,7 +155,7 @@ export function ProcessSection() {
                   </p>
                 </div>
               </div>
-            </div>
+            </Reveal>
           </div>
 
           <div className="mt-6 flex justify-between border-t border-dashed border-border px-1 pt-3 text-xs font-medium text-muted-foreground">

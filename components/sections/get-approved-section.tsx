@@ -10,6 +10,7 @@ import { Checkbox } from "@/components/ui/checkbox";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Container } from "@/components/layout/container";
+import { Reveal } from "@/components/reveal";
 import { siteConfig } from "@/lib/site-data";
 
 declare global {
@@ -183,10 +184,10 @@ export function GetApprovedSection() {
   return (
     <section
       id="get-approved"
-      className="cv-auto bg-mesh-trust relative overflow-hidden py-20 sm:py-28"
+      className="bg-mesh-trust relative overflow-hidden py-20 sm:py-28"
     >
       <Container className="grid items-center gap-12 lg:grid-cols-2">
-        <div className="flex flex-col gap-4">
+        <Reveal className="flex flex-col gap-4">
           <div className={itemEnter} style={staggerDelay(0)}>
             <Badge
               variant="outline"
@@ -240,9 +241,9 @@ export function GetApprovedSection() {
             <Lock className="size-4.5 shrink-0 text-primary" />
             Your information is encrypted &amp; HIPAA-compliant
           </div>
-        </div>
+        </Reveal>
 
-        <div className="enter-zoom-up">
+        <Reveal className="enter-zoom-up">
           <Card className="relative overflow-hidden p-2 shadow-xl ring-1 ring-primary/10">
             <div className="dot-pattern pointer-events-none absolute top-0 right-0 h-24 w-24" aria-hidden="true" />
             <div className="absolute inset-x-0 top-0 h-1.5 bg-gradient-to-r from-emerald-500 via-emerald-400 to-amber-400" />
@@ -357,7 +358,7 @@ export function GetApprovedSection() {
               </form>
             </CardContent>
           </Card>
-        </div>
+        </Reveal>
       </Container>
     </section>
   );

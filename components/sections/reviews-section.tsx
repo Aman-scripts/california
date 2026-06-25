@@ -1,11 +1,12 @@
 "use client";
 
-import { useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { BadgeCheck, ChevronLeft, ChevronRight, Plus, Quote, Star } from "lucide-react";
 
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Container } from "@/components/layout/container";
+import { Reveal } from "@/components/reveal";
 import { googleReviewsUrl, reviews } from "@/lib/site-data";
 
 const avatarColors = ["bg-amber-400", "bg-emerald-400", "bg-sky-400", "bg-violet-400"];
@@ -30,15 +31,33 @@ function Stars({ size = "size-4" }: { size?: string }) {
 
 export function ReviewsSection() {
   const scrollRef = useRef<HTMLDivElement>(null);
+  const [carouselVisible, setCarouselVisible] = useState(false);
 
   const scrollByCard = (direction: 1 | -1) => {
     scrollRef.current?.scrollBy({ left: direction * 320, behavior: "smooth" });
   };
 
+  useEffect(() => {
+    const el = scrollRef.current;
+    if (!el) return;
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setCarouselVisible(true);
+          observer.disconnect();
+        }
+      },
+      { rootMargin: "0px", threshold: 0 }
+    );
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, []);
+
   return (
-    <section className="cv-auto bg-gradient-to-b from-muted/40 via-background to-background py-20 sm:py-28">
+    <section className="bg-gradient-to-b from-muted/40 via-background to-background py-20 sm:py-28">
       <Container>
-        <div className={`max-w-2xl ${headerEnter}`}>
+        <Reveal className={`max-w-2xl ${headerEnter}`}>
           <Badge
             variant="outline"
             className="h-auto gap-2 rounded-full bg-card px-4 py-2 text-base font-semibold"
@@ -53,11 +72,11 @@ export function ReviewsSection() {
             Hear from real patients who completed their medical marijuana
             evaluation with us and shared their experience on Google.
           </p>
-        </div>
+        </Reveal>
 
         <div className="mt-12 grid min-w-0 gap-8 lg:grid-cols-[300px_minmax(0,1fr)] lg:items-center">
           {/* Summary card */}
-          <div
+          <Reveal
             className={`relative overflow-hidden rounded-3xl bg-gradient-to-br from-emerald-50 via-card to-amber-50 p-7 shadow-md ring-1 ring-foreground/5 ${cardEnter}`}
           >
             <Quote className="absolute top-3 right-3 size-24 text-primary/15" />
@@ -88,13 +107,13 @@ export function ReviewsSection() {
                 Read More on Google
               </a>
             </Button>
-          </div>
+          </Reveal>
 
           {/* Carousel */}
           <div className="relative min-w-0">
             <div
               ref={scrollRef}
-              className="flex min-w-0 snap-x snap-mandatory gap-5 overflow-x-auto px-1 pb-2 [mask-image:linear-gradient(to_right,black_calc(100%-2rem),transparent)] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
+              className={`reveal-group ${carouselVisible ? "is-visible" : ""} flex min-w-0 snap-x snap-mandatory gap-5 overflow-x-auto px-1 pb-2 [mask-image:linear-gradient(to_right,black_calc(100%-2rem),transparent)] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden`}
             >
               {reviews.map((review, index) => {
                 const color = avatarColors[index % avatarColors.length];
