@@ -1,6 +1,3 @@
-"use client";
-
-import { motion, useReducedMotion } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
 import { Clock, DollarSign, Scale, ShieldCheck, Star, User } from "lucide-react";
@@ -8,15 +5,12 @@ import { Clock, DollarSign, Scale, ShieldCheck, Star, User } from "lucide-react"
 import { Button } from "@/components/ui/button";
 import { heroBadge, heroFeatures } from "@/lib/site-data";
 
-const EASE = [0.22, 1, 0.36, 1] as const;
 const featureIcons = [Clock, DollarSign, Scale];
 const avatarStyles = ["bg-amber-400", "bg-emerald-400", "bg-sky-400", "bg-violet-400"];
 
 const enter = "animate-in fade-in-0 slide-in-from-bottom-6 fill-mode-both duration-700 ease-out";
 
 export function HeroSection() {
-  const prefersReducedMotion = useReducedMotion();
-
   return (
     <section className="relative overflow-hidden rounded-b-[2rem] bg-gradient-to-br from-emerald-950 via-emerald-900 to-emerald-950 py-14 sm:rounded-b-[2.5rem] sm:py-20">
       <div
@@ -67,11 +61,9 @@ export function HeroSection() {
             {heroFeatures.map((feature, index) => {
               const Icon = featureIcons[index];
               return (
-                <motion.div
+                <div
                   key={feature.title}
-                  whileHover={prefersReducedMotion ? undefined : { y: -4 }}
-                  transition={{ duration: 0.25, ease: EASE }}
-                  className={`flex flex-col gap-2 rounded-xl border border-white/10 bg-white/5 p-4 ${enter}`}
+                  className={`flex flex-col gap-2 rounded-xl border border-white/10 bg-white/5 p-4 motion-safe:transition-transform motion-safe:duration-300 motion-safe:hover:-translate-y-1 ${enter}`}
                   style={{ animationDelay: `${400 + index * 80}ms` }}
                 >
                   <span className="flex size-9 items-center justify-center rounded-full bg-amber-400 text-emerald-950">
@@ -81,7 +73,7 @@ export function HeroSection() {
                     {feature.title}
                   </p>
                   <p className="text-xs text-emerald-100/60">{feature.description}</p>
-                </motion.div>
+                </div>
               );
             })}
           </div>
@@ -113,11 +105,7 @@ export function HeroSection() {
             aria-hidden="true"
           />
 
-          <motion.div
-            whileHover={prefersReducedMotion ? undefined : { scale: 1.02 }}
-            transition={{ duration: 0.4, ease: EASE }}
-            className="relative aspect-[4/5] overflow-hidden rounded-3xl border-[6px] border-card bg-card shadow-2xl"
-          >
+          <div className="relative aspect-[4/5] overflow-hidden rounded-3xl border-[6px] border-card bg-card shadow-2xl motion-safe:transition-transform motion-safe:duration-300 motion-safe:hover:scale-[1.02]">
             <Image
               src="/heroSection.webp"
               alt="Licensed doctor holding a California medical marijuana ID card"
@@ -153,7 +141,7 @@ export function HeroSection() {
                 <p className="text-xs text-muted-foreground">15-30 minutes</p>
               </div>
             </div>
-          </motion.div>
+          </div>
         </div>
       </div>
     </section>

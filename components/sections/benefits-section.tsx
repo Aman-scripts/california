@@ -1,6 +1,3 @@
-"use client";
-
-import { motion, type Variants } from "framer-motion";
 import Image from "next/image";
 import { Percent, Scale, ShieldCheck, Sprout } from "lucide-react";
 
@@ -9,29 +6,13 @@ import { Button } from "@/components/ui/button";
 import { Container } from "@/components/layout/container";
 import { benefits } from "@/lib/site-data";
 
-const EASE = [0.22, 1, 0.36, 1] as const;
+const cardEnter = "animate-in fade-in-0 slide-in-from-bottom-6 fill-mode-both duration-500 ease-out";
+const cardHover =
+  "motion-safe:transition-transform motion-safe:duration-300 motion-safe:hover:-translate-y-2 motion-safe:hover:scale-[1.02]";
 
-const gridVariants: Variants = {
-  hidden: {},
-  show: { transition: { staggerChildren: 0.12 } },
-};
-
-const cardVariants: Variants = {
-  hidden: { opacity: 0, y: 28, scale: 0.95 },
-  show: {
-    opacity: 1,
-    y: 0,
-    scale: 1,
-    transition: { type: "spring", stiffness: 220, damping: 22 },
-  },
-};
-
-const barVariants: Variants = {
-  hidden: { scaleY: 0 },
-  show: { scaleY: 1, transition: { duration: 0.6, ease: EASE } },
-};
-
-const cardHover = { y: -8, scale: 1.02, transition: { duration: 0.3, ease: EASE } };
+function staggerDelay(index: number) {
+  return { animationDelay: `${index * 120}ms` };
+}
 
 export function BenefitsSection() {
   const [taxSavings, possessionLimits, cultivation, dispensaryAccess] = benefits;
@@ -50,18 +31,11 @@ export function BenefitsSection() {
           </p>
         </div>
 
-        <motion.div
-          className="mt-14 grid grid-cols-1 gap-4 sm:grid-cols-3"
-          initial="hidden"
-          whileInView="show"
-          viewport={{ once: true, amount: 0.2 }}
-          variants={gridVariants}
-        >
+        <div className="mt-14 grid grid-cols-1 gap-4 sm:grid-cols-3">
           {/* Tax Savings - wide card */}
-          <motion.div
-            variants={cardVariants}
-            whileHover={cardHover}
-            className="relative col-span-1 overflow-hidden rounded-3xl bg-gradient-to-br from-emerald-200 to-emerald-50 p-6 shadow-md ring-1 ring-emerald-900/10 sm:col-span-2 sm:p-8"
+          <div
+            className={`relative col-span-1 overflow-hidden rounded-3xl bg-gradient-to-br from-emerald-200 to-emerald-50 p-6 shadow-md ring-1 ring-emerald-900/10 sm:col-span-2 sm:p-8 ${cardEnter} ${cardHover}`}
+            style={staggerDelay(0)}
           >
             <Percent className="absolute -right-6 -bottom-8 size-40 text-emerald-900/10" />
             <div className="relative flex flex-col gap-4 sm:flex-row sm:items-center sm:gap-8">
@@ -77,27 +51,22 @@ export function BenefitsSection() {
                 </p>
               </div>
             </div>
-          </motion.div>
+          </div>
 
           {/* Dispensary Access - tall image card */}
-          <motion.div
-            variants={cardVariants}
-            whileHover={cardHover}
-            className="relative col-span-1 row-span-2 min-h-[280px] overflow-hidden rounded-3xl shadow-md ring-1 ring-emerald-900/10 sm:min-h-0"
+          <div
+            className={`group relative col-span-1 row-span-2 min-h-[280px] overflow-hidden rounded-3xl shadow-md ring-1 ring-emerald-900/10 sm:min-h-0 ${cardEnter} ${cardHover}`}
+            style={staggerDelay(1)}
           >
-            <motion.div
-              className="absolute inset-0"
-              whileHover={{ scale: 1.08 }}
-              transition={{ duration: 0.5, ease: EASE }}
-            >
+            <div className="absolute inset-0 overflow-hidden">
               <Image
                 src="/medical-marijuana-benefits.jpg"
                 alt="California medical marijuana patient benefits"
                 fill
                 sizes="(min-width: 1024px) 360px, 90vw"
-                className="object-cover"
+                className="object-cover motion-safe:transition-transform motion-safe:duration-500 motion-safe:group-hover:scale-110"
               />
-            </motion.div>
+            </div>
             <div className="absolute inset-0 bg-gradient-to-t from-emerald-950/85 via-emerald-950/15 to-transparent" />
             <div className="absolute top-4 left-4 flex items-center gap-1.5 rounded-full bg-white px-3 py-1.5 text-xs font-semibold text-emerald-800 shadow-sm">
               <ShieldCheck className="size-3.5" />
@@ -111,23 +80,21 @@ export function BenefitsSection() {
                 {dispensaryAccess.description}
               </p>
             </div>
-          </motion.div>
+          </div>
 
           {/* Higher Possession Limits */}
-          <motion.div
-            variants={cardVariants}
-            whileHover={cardHover}
-            className="relative col-span-1 overflow-hidden rounded-3xl bg-gradient-to-br from-sky-200 to-sky-50 p-6 shadow-md ring-1 ring-sky-900/10"
+          <div
+            className={`relative col-span-1 overflow-hidden rounded-3xl bg-gradient-to-br from-sky-200 to-sky-50 p-6 shadow-md ring-1 ring-sky-900/10 ${cardEnter} ${cardHover}`}
+            style={staggerDelay(2)}
           >
             <span className="flex size-11 items-center justify-center rounded-xl bg-sky-500/20 text-sky-700">
               <Scale className="size-5" />
             </span>
             <div className="mt-6 flex items-end gap-1.5">
               {[40, 65, 50, 90].map((h, i) => (
-                <motion.span
+                <span
                   key={i}
-                  variants={barVariants}
-                  style={{ height: `${h * 0.4}px`, transformOrigin: "bottom" }}
+                  style={{ height: `${h * 0.4}px` }}
                   className="w-3 rounded-full bg-sky-500/60"
                 />
               ))}
@@ -137,13 +104,12 @@ export function BenefitsSection() {
             <p className="mt-1 text-sm text-sky-900/70">
               {possessionLimits.description}
             </p>
-          </motion.div>
+          </div>
 
           {/* Legal Cultivation */}
-          <motion.div
-            variants={cardVariants}
-            whileHover={cardHover}
-            className="relative col-span-1 overflow-hidden rounded-3xl bg-gradient-to-br from-amber-200 to-amber-50 p-6 shadow-md ring-1 ring-amber-900/10"
+          <div
+            className={`relative col-span-1 overflow-hidden rounded-3xl bg-gradient-to-br from-amber-200 to-amber-50 p-6 shadow-md ring-1 ring-amber-900/10 ${cardEnter} ${cardHover}`}
+            style={staggerDelay(3)}
           >
             <span className="flex size-11 items-center justify-center rounded-xl bg-amber-500/20 text-amber-700">
               <Sprout className="size-5" />
@@ -155,8 +121,8 @@ export function BenefitsSection() {
             <p className="mt-1 text-sm text-amber-900/70">
               {cultivation.description}
             </p>
-          </motion.div>
-        </motion.div>
+          </div>
+        </div>
 
         <div className="mt-10 text-center">
           <Button size="xl" asChild>

@@ -1,18 +1,11 @@
-"use client";
-
-import { motion, type Variants } from "framer-motion";
 import Link from "next/link";
 import { ChevronRight, Clock3, IdCard, Phone, User, Video } from "lucide-react";
 
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 
-const EASE = [0.22, 1, 0.36, 1] as const;
-
-const cardVariants: Variants = {
-  hidden: { opacity: 0, y: 24, scale: 0.95 },
-  show: { opacity: 1, y: 0, scale: 1, transition: { duration: 0.6, ease: EASE } },
-};
+const cardEnter =
+  "animate-in fade-in-0 slide-in-from-bottom-6 zoom-in-95 fill-mode-both duration-700 ease-out";
 
 const timeMarkers = ["Start", "~10 min", "~20 min", "Approved"];
 
@@ -23,13 +16,7 @@ export function ProcessSection() {
         <div className="relative overflow-hidden rounded-[2rem] border border-dashed border-border bg-muted/30 p-5 sm:p-6 lg:p-8">
           <div className="grid gap-6 lg:grid-cols-[0.8fr_1.2fr] lg:items-stretch lg:gap-8">
             {/* Left: copy + CTAs */}
-            <motion.div
-              initial={{ opacity: 0, y: 16 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, amount: 0.4 }}
-              transition={{ duration: 0.6, ease: EASE }}
-              className="flex flex-col"
-            >
+            <div className="animate-in fade-in-0 slide-in-from-bottom-4 fill-mode-both flex flex-col duration-700 ease-out">
               <Badge
                 variant="outline"
                 className="h-auto gap-2 rounded-full bg-card px-4 py-2 text-base font-semibold"
@@ -88,18 +75,14 @@ export function ProcessSection() {
                   requirements
                 </p>
               </div>
-            </motion.div>
+            </div>
 
             {/* Right: ascending milestone staircase */}
             <div className="bg-grid-faint relative overflow-hidden rounded-2xl p-3 sm:p-4">
               <div className="flex flex-col gap-5 sm:gap-6">
                 {/* Step 1 */}
-                <motion.div
-                  variants={cardVariants}
-                  initial="hidden"
-                  whileInView="show"
-                  viewport={{ once: true, amount: 0.4 }}
-                  className="relative mx-auto w-full max-w-[420px] rounded-2xl bg-card px-6 py-4 shadow-lg sm:mx-0"
+                <div
+                  className={`relative mx-auto w-full max-w-[420px] rounded-2xl bg-card px-6 py-4 shadow-lg sm:mx-0 ${cardEnter}`}
                 >
                   <span className="absolute -top-3 -left-3 flex size-8 items-center justify-center rounded-full bg-primary text-xs font-bold text-primary-foreground shadow-md">
                     1
@@ -116,16 +99,12 @@ export function ProcessSection() {
                     Schedule your consultation at a convenient time from the
                     comfort of your home
                   </p>
-                </motion.div>
+                </div>
 
                 {/* Step 2 */}
-                <motion.div
-                  variants={cardVariants}
-                  initial="hidden"
-                  whileInView="show"
-                  viewport={{ once: true, amount: 0.4 }}
-                  transition={{ delay: 0.15 }}
-                  className="relative mx-auto w-full max-w-[460px] rounded-2xl bg-card px-6 py-4 shadow-lg sm:mx-0 sm:ml-[18%]"
+                <div
+                  className={`relative mx-auto w-full max-w-[460px] rounded-2xl bg-card px-6 py-4 shadow-lg sm:mx-0 sm:ml-[18%] ${cardEnter}`}
+                  style={{ animationDelay: "150ms" }}
                 >
                   <span className="absolute -top-3 -left-3 flex size-8 items-center justify-center rounded-full bg-primary text-xs font-bold text-primary-foreground shadow-md">
                     2
@@ -152,16 +131,12 @@ export function ProcessSection() {
                       <p className="mt-2 text-sm font-semibold">Video Call</p>
                     </div>
                   </div>
-                </motion.div>
+                </div>
 
                 {/* Step 3 */}
-                <motion.div
-                  variants={cardVariants}
-                  initial="hidden"
-                  whileInView="show"
-                  viewport={{ once: true, amount: 0.4 }}
-                  transition={{ delay: 0.3 }}
-                  className="relative mx-auto w-full max-w-[420px] rounded-2xl bg-card px-6 py-4 shadow-lg sm:mx-0 sm:ml-[34%]"
+                <div
+                  className={`relative mx-auto w-full max-w-[420px] rounded-2xl bg-card px-6 py-4 shadow-lg sm:mx-0 sm:ml-[34%] ${cardEnter}`}
+                  style={{ animationDelay: "300ms" }}
                 >
                   <span className="absolute -top-3 -left-3 flex size-8 items-center justify-center rounded-full bg-primary text-xs font-bold text-primary-foreground shadow-md">
                     3
@@ -178,7 +153,7 @@ export function ProcessSection() {
                     California dispensaries, plus an optional wallet-sized ID
                     card for convenience.
                   </p>
-                </motion.div>
+                </div>
               </div>
             </div>
           </div>

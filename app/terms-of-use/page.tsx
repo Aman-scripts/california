@@ -6,6 +6,9 @@ import { contactInfo, siteConfig } from "@/lib/site-data";
 export const metadata: Metadata = {
   title: "Terms of Use | Medical Marijuana Card California",
   description: "The terms and conditions governing your use of our website and telehealth services.",
+  alternates: {
+    canonical: "/terms-of-use",
+  },
 };
 
 export default function TermsOfUsePage() {
