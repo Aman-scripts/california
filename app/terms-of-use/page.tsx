@@ -7,7 +7,8 @@ import { siteConfig } from "@/lib/site-data";
 
 export const metadata: Metadata = {
   title: "Terms of Use",
-  description: "The terms and conditions governing your use of our website and telehealth services.",
+  description:
+    "Review the terms and conditions governing your use of our website, online consultations, and telehealth services in California.",
   alternates: {
     canonical: "/terms-of-use/",
   },

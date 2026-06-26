@@ -6,7 +6,8 @@ import { contactInfo, siteConfig } from "@/lib/site-data";
 
 export const metadata: Metadata = {
   title: "Privacy Policy",
-  description: "How we collect, use, and protect your personal and medical information.",
+  description:
+    "How Medical Marijuana Card California collects, uses, and protects your personal and medical information under HIPAA and CCPA.",
   alternates: {
     canonical: "/privacy-policy/",
   },

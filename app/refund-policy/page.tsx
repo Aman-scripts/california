@@ -6,7 +6,8 @@ import { contactInfo, siteConfig } from "@/lib/site-data";
 
 export const metadata: Metadata = {
   title: "Refund Policy",
-  description: "Our money-back guarantee and refund eligibility for medical marijuana card evaluations.",
+  description:
+    "Read our 100% money-back guarantee, refund eligibility rules, and how to request a refund for your medical marijuana evaluation.",
   alternates: {
     canonical: "/refund-policy/",
   },
