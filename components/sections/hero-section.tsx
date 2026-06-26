@@ -92,7 +92,7 @@ export function HeroSection() {
               className="min-w-0 flex-1 basis-1/2 justify-center bg-emerald-400 px-2 text-center text-sm whitespace-normal text-emerald-950 hover:bg-emerald-300 sm:flex-initial sm:basis-auto sm:whitespace-nowrap sm:px-8 sm:text-base"
               asChild
             >
-              <a href="/#get-approved">Apply Your Application</a>
+              <a href="/#get-approved">Start Your Application</a>
             </Button>
           </div>
         </div>
