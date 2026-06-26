@@ -15,37 +15,26 @@ export default function ShipmentPolicyAndDisclaimerPage() {
   return (
     <LegalPage
       title="Shipment Policy & Disclaimer"
-      updated="January 1, 2026"
-      intro="This page explains how physical Medical Marijuana ID cards are shipped, and sets out important disclaimers about the nature of our service."
+      intro={[
+        `At ${siteConfig.fullName}, we make sure your medical marijuana card is delivered safely and on time. Once your application is approved, your card will be shipped, and you can expect to receive it within 10–12 business days.`,
+        "If your card doesn't arrive, or if it comes damaged or with incorrect details, please contact us immediately. Our team will review your case and give you a solution within 24 hours.",
+      ]}
       sections={[
         {
-          heading: "1. What Gets Shipped",
+          heading: "Support & Contact",
           body: [
-            "Gold and Platinum plans include a physical plastic MMIC ID card. Basic plan patients receive a digital recommendation only and no physical item is shipped.",
+            "Our team is available 24/7 to assist with any shipping questions or concerns.",
+            `Email: ${contactInfo.email}`,
+            `Phone: ${contactInfo.phone}`,
+            "We remain committed to ensuring your Medical Marijuana Card reaches you securely and on time so you can enjoy seamless access to your medication.",
           ],
         },
         {
-          heading: "2. Shipping Timeline",
+          heading: "Disclaimer",
           body: [
-            "Physical cards are printed and shipped within 2-5 business days of your approved evaluation, via standard USPS mail within California. Delivery typically takes 3-7 business days after shipment.",
+            `The information on this website is for educational purposes only and should not be taken as medical or legal advice. ${siteConfig.fullName} is not a medical clinic and does not provide direct medical treatment. Our role is to connect California patients with licensed healthcare professionals who are authorized to evaluate qualifying conditions for medical marijuana use under California law.`,
+            "Approval is based solely on the evaluating physician's decision, and not every applicant will qualify. Medical marijuana use is governed by California state law and may also be subject to California's local regulations. Patients are responsible for knowing and following all applicable city, state, and federal laws. For personalized guidance, always consult a qualified healthcare provider.",
           ],
-        },
-        {
-          heading: "3. Discreet Packaging",
-          body: [
-            "All physical mail is shipped in plain, unmarked packaging with no reference to cannabis or medical marijuana on the exterior, to protect your privacy.",
-          ],
-        },
-        {
-          heading: "4. Disclaimer",
-          body: [
-            `${siteConfig.fullName} does not sell, ship, or distribute cannabis, cannabis products, or any controlled substance of any kind. We are a network of independent, licensed doctors and nurse practitioners who provide telehealth medical evaluations. Any product that ships from us is limited strictly to identification cards and printed recommendation documents.`,
-            "Medical cannabis recommendations are subject to California state law, which may change. Patients are responsible for understanding and complying with current state and local regulations regarding possession, cultivation, and use.",
-          ],
-        },
-        {
-          heading: "5. Contact",
-          body: [`Shipping questions can be directed to ${contactInfo.email} or ${contactInfo.phone}.`],
         },
       ]}
     />

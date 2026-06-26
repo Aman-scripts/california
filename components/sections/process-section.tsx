@@ -45,7 +45,7 @@ export function ProcessSection() {
                   className="min-w-0 flex-1 basis-1/2 justify-center px-2 text-center text-sm whitespace-normal sm:flex-initial sm:basis-auto sm:whitespace-nowrap sm:px-4 sm:text-base"
                   asChild
                 >
-                  <a href="/#get-approved">Apply Your Application</a>
+                  <a href="/#get-approved">Apply Here</a>
                 </Button>
                 <Button
                   size="lg"
