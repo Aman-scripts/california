@@ -68,7 +68,7 @@ export function MobileNav({
           </a>
           <SheetClose asChild>
             <Button asChild>
-              <Link href="/contact-us#book-appointment">
+              <Link href="/contact-us/#book-appointment">
                 Book Your Appointment
               </Link>
             </Button>

@@ -1,7 +1,7 @@
 import dynamic from "next/dynamic";
 
 import { HeroSection } from "@/components/sections/hero-section";
-import { faqs } from "@/lib/site-data";
+import { faqs, processSteps } from "@/lib/site-data";
 
 const ProcessSection = dynamic(() =>
   import("@/components/sections/process-section").then((m) => m.ProcessSection)
@@ -49,6 +49,20 @@ const faqJsonLd = {
   })),
 };
 
+// Mirrors the exact `processSteps` data ProcessSection renders, same
+// drift-proofing principle as the FAQ schema above.
+const howToJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "HowTo",
+  name: "How to Get a Medical Marijuana Card in California",
+  step: processSteps.map((step) => ({
+    "@type": "HowToStep",
+    position: step.step,
+    name: step.title,
+    text: step.description,
+  })),
+};
+
 export default function Home() {
   return (
     <>
@@ -56,6 +70,12 @@ export default function Home() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{
           __html: JSON.stringify(faqJsonLd).replace(/</g, "\\u003c"),
+        }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(howToJsonLd).replace(/</g, "\\u003c"),
         }}
       />
       <HeroSection />

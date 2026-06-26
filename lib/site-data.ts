@@ -3,7 +3,7 @@ export const siteConfig = {
   fullName: "Medical Marijuana Card California",
   tagline: "Apply for a California Medical Marijuana Card Today",
   description:
-    "Get your California medical marijuana recommendation online from 100% certified, licensed doctors. Same-Day Evaluation in 24-48 hours, plans starting at $55, backed by a money-back guarantee.",
+    "Get a California medical marijuana card online from licensed doctors. Same-day evaluation, plans from $55, money-back guarantee.",
   url: "https://medicalmarijuanacardcalifornia.com",
 };
 
@@ -65,7 +65,7 @@ export const navLinks: NavLink[] = [
   { label: "Benefits", href: "/#benefits" },
   { label: "Pricing", href: "/#pricing" },
   { label: "FAQ", href: "/#faq" },
-  { label: "Contact Us", href: "/contact-us" },
+  { label: "Contact Us", href: "/contact-us/" },
 ];
 
 export const heroBadge = "100% Certified Licensed Doctors";

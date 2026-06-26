@@ -40,7 +40,7 @@ export function FaqSection() {
                 Our team answers every day &mdash; by phone or email.
               </p>
               <Button className="mt-4 rounded-full" asChild>
-                <Link href="/contact-us">Talk to Us</Link>
+                <Link href="/contact-us/">Talk to Us</Link>
               </Button>
             </div>
           </div>

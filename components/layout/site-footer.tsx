@@ -14,10 +14,10 @@ const resourceLinks = [
 ];
 
 const legalLinks = [
-  { label: "Terms of Use", href: "/terms-of-use" },
-  { label: "Privacy Policy", href: "/privacy-policy" },
-  { label: "Refund Policy", href: "/refund-policy" },
-  { label: "Shipment Policy & Disclaimer", href: "/shipment-policy-and-disclaimer" },
+  { label: "Terms of Use", href: "/terms-of-use/" },
+  { label: "Privacy Policy", href: "/privacy-policy/" },
+  { label: "Refund Policy", href: "/refund-policy/" },
+  { label: "Shipment Policy & Disclaimer", href: "/shipment-policy-and-disclaimer/" },
 ];
 
 function FooterLinkColumn({
