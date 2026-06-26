@@ -69,7 +69,15 @@ export function ReviewsCarousel() {
                 </div>
                 <span className="flex size-7 shrink-0 items-center justify-center rounded-full bg-background shadow-sm ring-1 ring-foreground/5">
                   {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img src="/icon.svg" alt="Google" width={14} height={14} className="size-3.5" />
+                  <img
+                    src="/icon.svg"
+                    alt="Google"
+                    width={14}
+                    height={14}
+                    loading="lazy"
+                    decoding="async"
+                    className="size-3.5"
+                  />
                 </span>
               </div>
               <div className="relative flex items-center gap-1.5">
