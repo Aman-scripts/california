@@ -95,6 +95,9 @@ const organizationJsonLd = {
   alternateName: siteConfig.name,
   url: siteConfig.url,
   description: siteConfig.description,
+  image: `${siteConfig.url}/og-image.jpg`,
+  // Sourced from the real pricingPlans data ($55/$99/$199) -- not a guess.
+  priceRange: "$55-$199",
   telephone: contactInfo.phone,
   email: contactInfo.email,
   address: {
