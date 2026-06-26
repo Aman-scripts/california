@@ -8,8 +8,8 @@ import {
   Dna,
   Eye,
   Frown,
-  Hand,
   Info,
+  Scale,
   ShieldAlert,
   Sparkles,
   UtensilsCrossed,
@@ -32,7 +32,7 @@ const conditionIcons = [
   Activity,
   Frown,
   BicepsFlexed,
-  Hand,
+  Scale,
   UtensilsCrossed,
   Bandage,
 ];

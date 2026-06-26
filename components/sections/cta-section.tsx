@@ -14,7 +14,7 @@ export function CtaSection() {
             24-48 hours, with a 100% money-back guarantee.
           </p>
           <Button size="xl" variant="secondary" asChild>
-            <a href="/#get-approved">Apply Your Application</a>
+            <a href="/#get-approved">Book My Appointment</a>
           </Button>
         </div>
       </Container>
