@@ -33,6 +33,8 @@ export const metadata: Metadata = {
     template: `%s | ${siteConfig.fullName}`,
   },
   description: siteConfig.description,
+  authors: [{ name: siteConfig.fullName, url: siteConfig.url }],
+  referrer: "origin-when-cross-origin",
   alternates: {
     canonical: "/",
   },
@@ -52,11 +54,21 @@ export const metadata: Metadata = {
     url: siteConfig.url,
     siteName: siteConfig.fullName,
     type: "website",
+    locale: "en_US",
+    images: [
+      {
+        url: "/heroSection.webp",
+        width: 1200,
+        height: 1200,
+        alt: siteConfig.fullName,
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
     title: siteConfig.fullName,
     description: siteConfig.description,
+    images: ["/heroSection.webp"],
   },
 };
 
@@ -87,6 +99,16 @@ const organizationJsonLd = {
   },
 };
 
+// No internal site-search exists, so this intentionally omits a
+// SearchAction/potentialAction rather than claiming a feature that isn't
+// real.
+const websiteJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  name: siteConfig.fullName,
+  url: siteConfig.url,
+};
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -109,6 +131,12 @@ export default function RootLayout({
           type="application/ld+json"
           dangerouslySetInnerHTML={{
             __html: JSON.stringify(organizationJsonLd).replace(/</g, "\\u003c"),
+          }}
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify(websiteJsonLd).replace(/</g, "\\u003c"),
           }}
         />
         <SiteHeader />
