@@ -1,18 +1,13 @@
 "use client";
 
 import { useState, type ChangeEvent, type FormEvent } from "react";
+import { sendGTMEvent } from "@next/third-parties/google";
 
 import { Button } from "@/components/ui/button";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { siteConfig } from "@/lib/site-data";
-
-declare global {
-  interface Window {
-    dataLayer?: Record<string, unknown>[];
-  }
-}
 
 const HEALLY_UTM_SOURCE = `${siteConfig.url}/`;
 
@@ -160,8 +155,7 @@ export function LeadCaptureForm() {
       .replace(/\//g, "_")
       .replace(/=+$/, "");
 
-    window.dataLayer = window.dataLayer || [];
-    window.dataLayer.push({
+    sendGTMEvent({
       event: "heallyValidatedSubmit",
       utm_source: HEALLY_UTM_SOURCE,
     });
