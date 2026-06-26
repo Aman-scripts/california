@@ -1,7 +1,7 @@
 import dynamic from "next/dynamic";
 
 import { HeroSection } from "@/components/sections/hero-section";
-import { faqs, processSteps } from "@/lib/site-data";
+import { faqs, processSteps, reviews, siteConfig } from "@/lib/site-data";
 
 const ProcessSection = dynamic(() =>
   import("@/components/sections/process-section").then((m) => m.ProcessSection)
