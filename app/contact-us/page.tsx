@@ -4,11 +4,11 @@ import { Breadcrumbs } from "@/components/breadcrumbs";
 import { ContactPageContentDummy } from "@/components/sections/contact-page-content-dummy";
 
 export const metadata: Metadata = {
-  title: "Contact Us | Medical Marijuana Card California",
+  title: "Contact Us",
   description:
     "Get in touch with our team or book your online medical marijuana card appointment with a licensed California physician.",
   alternates: {
-    canonical: "/contact-us",
+    canonical: "/contact-us/",
   },
 };
 

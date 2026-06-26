@@ -100,7 +100,7 @@ export function ConditionsSection() {
                 cannabis is suitable for you.
               </p>
               <Button size="lg" asChild>
-                <Link href="/contact-us#book-appointment">Check If You Qualify</Link>
+                <Link href="/contact-us/#book-appointment">Check If You Qualify</Link>
               </Button>
             </div>
           </Reveal>

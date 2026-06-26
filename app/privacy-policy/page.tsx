@@ -5,10 +5,10 @@ import { LegalPage } from "@/components/legal-page";
 import { contactInfo, siteConfig } from "@/lib/site-data";
 
 export const metadata: Metadata = {
-  title: "Privacy Policy | Medical Marijuana Card California",
+  title: "Privacy Policy",
   description: "How we collect, use, and protect your personal and medical information.",
   alternates: {
-    canonical: "/privacy-policy",
+    canonical: "/privacy-policy/",
   },
 };
 

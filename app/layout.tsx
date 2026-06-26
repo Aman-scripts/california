@@ -29,7 +29,9 @@ const poppins = Poppins({
 export const metadata: Metadata = {
   metadataBase: new URL(siteConfig.url),
   title: {
-    default: `${siteConfig.fullName} | ${siteConfig.tagline}`,
+    // Kept short and distinct from siteConfig.tagline (the longer marketing
+    // phrase, reserved for visible copy) to stay under ~60 characters.
+    default: `${siteConfig.fullName} | Get Approved Online`,
     template: `%s | ${siteConfig.fullName}`,
   },
   description: siteConfig.description,
@@ -57,7 +59,13 @@ export const metadata: Metadata = {
     locale: "en_US",
     images: [
       {
-        url: "/heroSection.webp",
+        // JPEG, not the source heroSection.webp: many social-card crawlers
+        // (notably Facebook's) don't reliably render WebP og:images, and
+        // Next's image optimizer can't convert it for them either -- with
+        // no AVIF/WebP match in their Accept header it just falls back to
+        // serving the original (still WebP) format. A real static JPEG
+        // sidesteps the issue entirely.
+        url: "/og-image.jpg",
         width: 1200,
         height: 1200,
         alt: siteConfig.fullName,
@@ -68,7 +76,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: siteConfig.fullName,
     description: siteConfig.description,
-    images: ["/heroSection.webp"],
+    images: ["/og-image.jpg"],
   },
 };
 

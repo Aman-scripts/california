@@ -6,10 +6,10 @@ import { LegalPage } from "@/components/legal-page";
 import { siteConfig } from "@/lib/site-data";
 
 export const metadata: Metadata = {
-  title: "Terms of Use | Medical Marijuana Card California",
+  title: "Terms of Use",
   description: "The terms and conditions governing your use of our website and telehealth services.",
   alternates: {
-    canonical: "/terms-of-use",
+    canonical: "/terms-of-use/",
   },
 };
 
@@ -119,7 +119,7 @@ export default function TermsOfUsePage() {
             <>
               Your use of this site is also governed by our{" "}
               <Link
-                href="/privacy-policy"
+                href="/privacy-policy/"
                 className="text-foreground underline underline-offset-4 hover:text-primary"
               >
                 Privacy Policy
