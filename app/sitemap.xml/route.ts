@@ -17,7 +17,7 @@ export async function GET() {
       (route) => `  <url>
     <loc>${siteConfig.url}${route}</loc>
     <lastmod>${lastmod}</lastmod>
-    <changefreq>${route === "/" ? "weekly" : "yearly"}</changefreq>
+    <changefreq>${route === "/" ? "daily" : "weekly"}</changefreq>
     <priority>${route === "/" ? "1" : "0.5"}</priority>
   </url>`
     )
