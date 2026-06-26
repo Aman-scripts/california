@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 
+import { Breadcrumbs } from "@/components/breadcrumbs";
 import { LegalPage } from "@/components/legal-page";
 import { contactInfo, siteConfig } from "@/lib/site-data";
 
@@ -13,7 +14,9 @@ export const metadata: Metadata = {
 
 export default function PrivacyPolicyPage() {
   return (
-    <LegalPage
+    <>
+      <Breadcrumbs items={[{ label: "Privacy Policy" }]} />
+      <LegalPage
       title="Privacy Policy"
       updated="24 September 2025"
       intro={[
@@ -131,6 +134,7 @@ export default function PrivacyPolicyPage() {
           ],
         },
       ]}
-    />
+      />
+    </>
   );
 }
