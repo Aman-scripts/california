@@ -108,11 +108,20 @@ const organizationJsonLd = {
     postalCode: "90046",
     addressCountry: "US",
   },
+  // Real numbers from the business's actual Google Business Profile
+  // (confirmed directly by the client, not scraped or invented) -- this
+  // is what makes it valid to list multiple individual reviews below.
+  aggregateRating: {
+    "@type": "AggregateRating",
+    ratingValue: "4.9",
+    reviewCount: "450",
+  },
   // Nested directly on the entity it reviews (not a separate top-level
   // Review+itemReviewed per entry) so Google's parser sees one complete
-  // business, not six duplicate, field-incomplete copies of it. Real
-  // author + real text only -- no reviewRating, since no numeric rating
-  // exists anywhere in the underlying data.
+  // business, not duplicate, field-incomplete copies of it. Real author
+  // + real text only -- no per-review reviewRating, since no per-review
+  // numeric value exists anywhere in the underlying data (only the
+  // aggregate above is real/confirmed).
   review: reviews.map((review) => ({
     "@type": "Review",
     author: {
