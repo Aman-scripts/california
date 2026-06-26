@@ -4,7 +4,7 @@ import { Geist, Geist_Mono, Poppins } from "next/font/google";
 import "./globals.css";
 import { cn } from "@/lib/utils";
 import { SiteHeader } from "@/components/layout/site-header";
-import { contactInfo, siteConfig } from "@/lib/site-data";
+import { contactInfo, reviews, siteConfig } from "@/lib/site-data";
 
 const SiteFooter = dynamic(() =>
   import("@/components/layout/site-footer").then((m) => m.SiteFooter)
@@ -108,6 +108,19 @@ const organizationJsonLd = {
     postalCode: "90046",
     addressCountry: "US",
   },
+  // Nested directly on the entity it reviews (not a separate top-level
+  // Review+itemReviewed per entry) so Google's parser sees one complete
+  // business, not six duplicate, field-incomplete copies of it. Real
+  // author + real text only -- no reviewRating, since no numeric rating
+  // exists anywhere in the underlying data.
+  review: reviews.map((review) => ({
+    "@type": "Review",
+    author: {
+      "@type": "Person",
+      name: review.name,
+    },
+    reviewBody: review.text,
+  })),
 };
 
 // No internal site-search exists, so this intentionally omits a
