@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 
+import { Breadcrumbs } from "@/components/breadcrumbs";
 import { LegalPage } from "@/components/legal-page";
 import { contactInfo, siteConfig } from "@/lib/site-data";
 
@@ -13,7 +14,9 @@ export const metadata: Metadata = {
 
 export default function RefundPolicyPage() {
   return (
-    <LegalPage
+    <>
+      <Breadcrumbs items={[{ label: "Refund Policy" }]} />
+      <LegalPage
       title="Refund Policy"
       intro={`${siteConfig.fullName} is committed to providing clear and fair service. We offer a 100% money-back guarantee under specific conditions.`}
       sections={[
@@ -114,6 +117,7 @@ export default function RefundPolicyPage() {
           ],
         },
       ]}
-    />
+      />
+    </>
   );
 }

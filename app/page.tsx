@@ -1,6 +1,7 @@
 import dynamic from "next/dynamic";
 
 import { HeroSection } from "@/components/sections/hero-section";
+import { faqs } from "@/lib/site-data";
 
 const ProcessSection = dynamic(() =>
   import("@/components/sections/process-section").then((m) => m.ProcessSection)
@@ -33,9 +34,30 @@ const CtaSection = dynamic(() =>
   import("@/components/sections/cta-section").then((m) => m.CtaSection)
 );
 
+// Mirrors the exact `faqs` data FaqSection renders into its accordion, so
+// the schema can never drift from what's actually visible on the page.
+const faqJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: faqs.map((faq) => ({
+    "@type": "Question",
+    name: faq.question,
+    acceptedAnswer: {
+      "@type": "Answer",
+      text: faq.answer,
+    },
+  })),
+};
+
 export default function Home() {
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(faqJsonLd).replace(/</g, "\\u003c"),
+        }}
+      />
       <HeroSection />
       <ProcessSection />
       <GetApprovedSection />

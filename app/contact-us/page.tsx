@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 
+import { Breadcrumbs } from "@/components/breadcrumbs";
 import { ContactPageContentDummy } from "@/components/sections/contact-page-content-dummy";
 
 export const metadata: Metadata = {
@@ -12,5 +13,10 @@ export const metadata: Metadata = {
 };
 
 export default function ContactUsPage() {
-  return <ContactPageContentDummy />;
+  return (
+    <>
+      <Breadcrumbs items={[{ label: "Contact Us" }]} />
+      <ContactPageContentDummy />
+    </>
+  );
 }

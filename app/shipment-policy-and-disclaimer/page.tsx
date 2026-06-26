@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 
+import { Breadcrumbs } from "@/components/breadcrumbs";
 import { LegalPage } from "@/components/legal-page";
 import { contactInfo, siteConfig } from "@/lib/site-data";
 
@@ -13,7 +14,9 @@ export const metadata: Metadata = {
 
 export default function ShipmentPolicyAndDisclaimerPage() {
   return (
-    <LegalPage
+    <>
+      <Breadcrumbs items={[{ label: "Shipment Policy & Disclaimer" }]} />
+      <LegalPage
       title="Shipment Policy & Disclaimer"
       intro={[
         `At ${siteConfig.fullName}, we make sure your medical marijuana card is delivered safely and on time. Once your application is approved, your card will be shipped, and you can expect to receive it within 10–12 business days.`,
@@ -37,6 +40,7 @@ export default function ShipmentPolicyAndDisclaimerPage() {
           ],
         },
       ]}
-    />
+      />
+    </>
   );
 }

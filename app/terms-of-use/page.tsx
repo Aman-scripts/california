@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 
+import { Breadcrumbs } from "@/components/breadcrumbs";
 import { LegalPage } from "@/components/legal-page";
 import { siteConfig } from "@/lib/site-data";
 
@@ -14,7 +15,9 @@ export const metadata: Metadata = {
 
 export default function TermsOfUsePage() {
   return (
-    <LegalPage
+    <>
+      <Breadcrumbs items={[{ label: "Terms of Use" }]} />
+      <LegalPage
       title="Terms of Use"
       updated="19 September 2025"
       intro={`Welcome to ${siteConfig.fullName}. By visiting or using our website, you agree to these Terms of Use. Please read them carefully before accessing our services.`}
@@ -147,6 +150,7 @@ export default function TermsOfUsePage() {
           ],
         },
       ]}
-    />
+      />
+    </>
   );
 }
