@@ -1,5 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import dynamic from "next/dynamic";
+import { GoogleTagManager } from "@next/third-parties/google";
 import { Geist, Geist_Mono, Poppins } from "next/font/google";
 import "./globals.css";
 import { cn } from "@/lib/utils";
@@ -159,7 +160,19 @@ export default function RootLayout({
         "font-sans"
       )}
     >
+      <GoogleTagManager gtmId="GTM-TWV9G5C" />
       <body className="flex min-h-full flex-col">
+        {/* GTM's official noscript fallback -- not included by the
+            next/third-parties component itself, so added here by hand
+            to match Google's own installation instructions exactly. */}
+        <noscript>
+          <iframe
+            src="https://www.googletagmanager.com/ns.html?id=GTM-TWV9G5C"
+            height="0"
+            width="0"
+            style={{ display: "none", visibility: "hidden" }}
+          />
+        </noscript>
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
