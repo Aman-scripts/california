@@ -6,7 +6,8 @@ import { contactInfo, siteConfig } from "@/lib/site-data";
 
 export const metadata: Metadata = {
   title: "Shipment Policy",
-  description: "Shipping details for physical MMIC ID cards and important disclaimers about our service.",
+  description:
+    "Shipping timelines and delivery details for physical MMIC ID cards, plus important legal disclaimers about our telehealth service.",
   alternates: {
     canonical: "/shipment-policy-and-disclaimer/",
   },

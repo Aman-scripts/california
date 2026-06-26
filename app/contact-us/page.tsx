@@ -6,7 +6,7 @@ import { ContactPageContentDummy } from "@/components/sections/contact-page-cont
 export const metadata: Metadata = {
   title: "Contact Us",
   description:
-    "Get in touch with our team or book your online medical marijuana card appointment with a licensed California physician.",
+    "Get in touch with our support team or book an online medical marijuana card evaluation with a licensed California physician today.",
   alternates: {
     canonical: "/contact-us/",
   },

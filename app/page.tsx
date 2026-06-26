@@ -63,6 +63,29 @@ const howToJsonLd = {
   })),
 };
 
+// Mirrors the exact `reviews` data ReviewsSection renders. No reviewRating
+// is included on any entry: there is no numeric rating anywhere in the
+// underlying data (Stars always renders 5 filled stars unconditionally,
+// with no per-review value behind it), and inventing one would be exactly
+// the kind of self-serving, unbacked review markup Google's structured
+// data guidelines prohibit. Each Review is real author + real text only.
+const reviewJsonLd = {
+  "@context": "https://schema.org",
+  "@graph": reviews.map((review) => ({
+    "@type": "Review",
+    itemReviewed: {
+      "@type": "MedicalBusiness",
+      name: siteConfig.fullName,
+      url: siteConfig.url,
+    },
+    author: {
+      "@type": "Person",
+      name: review.name,
+    },
+    reviewBody: review.text,
+  })),
+};
+
 export default function Home() {
   return (
     <>
@@ -76,6 +99,12 @@ export default function Home() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{
           __html: JSON.stringify(howToJsonLd).replace(/</g, "\\u003c"),
+        }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(reviewJsonLd).replace(/</g, "\\u003c"),
         }}
       />
       <HeroSection />
