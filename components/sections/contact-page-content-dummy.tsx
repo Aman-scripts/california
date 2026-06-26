@@ -9,15 +9,9 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select";
 import { Textarea } from "@/components/ui/textarea";
 import { Container } from "@/components/layout/container";
+import { cn } from "@/lib/utils";
 import { contactInfo, pricingPlans } from "@/lib/site-data";
 
 const GOOGLE_MAPS_URL = "https://maps.app.goo.gl/v325ZHMiyiY7nvDm9";
@@ -172,18 +166,35 @@ export function ContactPageContentDummy() {
                     </motion.div>
                     <motion.div variants={itemVariants} className="grid gap-2 sm:col-span-2">
                       <Label htmlFor="plan">Preferred plan</Label>
-                      <Select name="plan">
-                        <SelectTrigger id="plan" className="w-full">
-                          <SelectValue placeholder="Select a plan" />
-                        </SelectTrigger>
-                        <SelectContent>
-                          {pricingPlans.map((plan) => (
-                            <SelectItem key={plan.name} value={plan.name.toLowerCase()}>
-                              {plan.name} &mdash; {plan.price}
-                            </SelectItem>
-                          ))}
-                        </SelectContent>
-                      </Select>
+                      {/*
+                        Plain native <select>, not the Radix Select used
+                        elsewhere: Radix's hidden native-select bubble
+                        mechanism reads each <option>'s text from a DOM ref
+                        that doesn't exist during SSR, so it always renders
+                        textless/label-less and fails W3C validation no
+                        matter what props are passed. A native element has
+                        no such issue since its text is just its children.
+                      */}
+                      <select
+                        id="plan"
+                        name="plan"
+                        defaultValue=""
+                        className={cn(
+                          "h-11 w-full min-w-0 rounded-lg border border-input bg-transparent px-3.5 text-base shadow-xs transition-[color,box-shadow] outline-none",
+                          "focus-visible:border-ring focus-visible:ring-3 focus-visible:ring-ring/50",
+                          "disabled:pointer-events-none disabled:cursor-not-allowed disabled:opacity-50",
+                          "dark:bg-input/30"
+                        )}
+                      >
+                        <option value="" disabled>
+                          Select a plan
+                        </option>
+                        {pricingPlans.map((plan) => (
+                          <option key={plan.name} value={plan.name.toLowerCase()}>
+                            {plan.name} — {plan.price}
+                          </option>
+                        ))}
+                      </select>
                     </motion.div>
                     <motion.div variants={itemVariants} className="grid gap-2 sm:col-span-2">
                       <Label htmlFor="message">Tell us about your condition</Label>
