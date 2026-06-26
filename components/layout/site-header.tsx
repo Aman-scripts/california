@@ -1,22 +1,23 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import dynamic from "next/dynamic";
 import { usePathname } from "next/navigation";
 import Image from "next/image";
 import Link from "next/link";
 import { Menu, Phone } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
-import {
-  Sheet,
-  SheetClose,
-  SheetContent,
-  SheetHeader,
-  SheetTitle,
-  SheetTrigger,
-} from "@/components/ui/sheet";
 import { contactInfo, navLinks } from "@/lib/site-data";
 import { cn } from "@/lib/utils";
+
+// The mobile nav drawer pulls in @radix-ui/react-dialog. Most mobile
+// visitors never open it, so it's split into its own chunk and only
+// imported once the menu button is actually clicked, keeping Dialog's
+// hydration cost off the critical path for everyone else.
+const MobileNav = dynamic(() =>
+  import("@/components/layout/mobile-nav").then((m) => m.MobileNav)
+);
 
 const desktopNavLinks = navLinks;
 const sectionIds = desktopNavLinks
@@ -69,6 +70,8 @@ export function SiteHeader() {
   const pathname = usePathname();
   const activeId = useActiveSection(sectionIds);
   const isScrolled = useScrolled();
+  const [navOpen, setNavOpen] = useState(false);
+  const [navTouched, setNavTouched] = useState(false);
 
   return (
     <header
@@ -146,70 +149,19 @@ export function SiteHeader() {
           </Button>
         </div>
 
-        <Sheet>
-          <SheetTrigger asChild>
-            <Button
-              variant="outline"
-              size="icon"
-              className="border-white/20 bg-white/10 text-white hover:bg-white/20 lg:hidden"
-            >
-              <Menu />
-              <span className="sr-only">Open menu</span>
-            </Button>
-          </SheetTrigger>
-          <SheetContent side="right">
-            <SheetHeader>
-              <SheetTitle>
-                <span className="relative block h-10 w-48">
-                  <Image
-                    src="/logo.png"
-                    alt="Medical Marijuana Card California"
-                    fill
-                    sizes="192px"
-                    quality={60}
-                    className="object-contain object-left"
-                  />
-                </span>
-              </SheetTitle>
-            </SheetHeader>
-            <nav className="flex flex-col gap-1 px-4">
-              {navLinks.map((link) => {
-                const isHashLink = link.href.startsWith("/#");
-                const className =
-                  "rounded-md px-2 py-2.5 text-sm font-medium text-foreground transition-colors hover:bg-muted";
-                return (
-                  <SheetClose asChild key={link.href}>
-                    {isHashLink ? (
-                      <a href={link.href} className={className}>
-                        {link.label}
-                      </a>
-                    ) : (
-                      <Link href={link.href} className={className}>
-                        {link.label}
-                      </Link>
-                    )}
-                  </SheetClose>
-                );
-              })}
-            </nav>
-            <div className="mt-auto flex flex-col gap-2 p-4">
-              <a
-                href={contactInfo.phoneHref}
-                className="flex items-center justify-center gap-1.5 text-sm font-semibold text-primary"
-              >
-                <Phone className="size-4" />
-                {contactInfo.phone}
-              </a>
-              <SheetClose asChild>
-                <Button asChild>
-                  <Link href="/contact-us#book-appointment">
-                    Book Your Appointment
-                  </Link>
-                </Button>
-              </SheetClose>
-            </div>
-          </SheetContent>
-        </Sheet>
+        <Button
+          variant="outline"
+          size="icon"
+          className="border-white/20 bg-white/10 text-white hover:bg-white/20 lg:hidden"
+          onClick={() => {
+            setNavTouched(true);
+            setNavOpen(true);
+          }}
+        >
+          <Menu />
+          <span className="sr-only">Open menu</span>
+        </Button>
+        {navTouched && <MobileNav open={navOpen} onOpenChange={setNavOpen} />}
       </div>
     </header>
   );
