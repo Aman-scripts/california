@@ -101,7 +101,7 @@ export function ContactPageContentDummy() {
             </p>
           </motion.div>
 
-          <div className="mx-auto mt-10 max-w-2xl">
+          <div className="mx-auto mt-10 max-w-4xl">
             <motion.div
               className="flex flex-col gap-4"
               initial={{ opacity: 0, y: 24 }}
@@ -113,7 +113,7 @@ export function ContactPageContentDummy() {
                 <iframe
                   title="Our location on Google Maps"
                   src={`https://www.google.com/maps?q=${encodeURIComponent(contactInfo.address)}&output=embed`}
-                  className="h-80 w-full border-0 sm:h-96"
+                  className="h-96 w-full border-0 sm:h-[34rem]"
                   loading="lazy"
                   referrerPolicy="no-referrer-when-downgrade"
                 />
