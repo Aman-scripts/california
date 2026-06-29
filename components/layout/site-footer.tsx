@@ -79,14 +79,14 @@ export function SiteFooter() {
         <div className="relative z-10 mx-auto max-w-[1200px] px-4 pt-10 pb-[max(1.5rem,env(safe-area-inset-bottom))] sm:px-6 sm:pt-14 md:pt-16 lg:px-8">
           <div className="flex flex-col gap-10 sm:flex-row sm:items-start sm:justify-between">
             <Reveal as="div" className={`flex flex-col items-start gap-4 ${enter}`}>
-              <span className="relative block h-10 w-44 shrink-0 rounded-md bg-white px-3 py-1.5">
+              <span className="relative block h-10 w-44 shrink-0">
                 <Image
-                  src="/mmca-logo.svg"
+                  src="/mmca-logo-white.svg"
                   alt="Medical Marijuana Card California footer logo"
                   fill
                   sizes="176px"
                   quality={60}
-                  className="object-contain p-0.5"
+                  className="object-contain object-left"
                 />
               </span>
 

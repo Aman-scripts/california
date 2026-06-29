@@ -1,18 +1,13 @@
 "use client";
 
 import Link from "next/link";
-import { motion, type Variants } from "framer-motion";
-import { Mail, MapPin, Phone, Sparkles } from "lucide-react";
+import { motion } from "framer-motion";
+import { Mail, MapPin, Phone } from "lucide-react";
 
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { Card, CardContent } from "@/components/ui/card";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
-import { Textarea } from "@/components/ui/textarea";
 import { Container } from "@/components/layout/container";
-import { cn } from "@/lib/utils";
-import { contactInfo, pricingPlans } from "@/lib/site-data";
+import { contactInfo } from "@/lib/site-data";
 
 const GOOGLE_MAPS_URL = "https://maps.app.goo.gl/v325ZHMiyiY7nvDm9";
 const EASE = [0.22, 1, 0.36, 1] as const;
@@ -37,16 +32,6 @@ const contactDetails = [
     href: GOOGLE_MAPS_URL,
   },
 ];
-
-const columnVariants: Variants = {
-  hidden: {},
-  show: { transition: { staggerChildren: 0.1, delayChildren: 0.05 } },
-};
-
-const itemVariants: Variants = {
-  hidden: { opacity: 0, y: 20 },
-  show: { opacity: 1, y: 0, transition: { duration: 0.6, ease: EASE } },
-};
 
 export function ContactPageContentDummy() {
   return (
@@ -94,7 +79,7 @@ export function ContactPageContentDummy() {
       <section id="book-appointment" className="bg-mesh-trust bg-grid-faint pb-20 sm:pb-28">
         <Container>
           <motion.div
-            className="text-center"
+            className="mx-auto max-w-2xl text-center"
             initial={{ opacity: 0, y: 16 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, amount: 0.4 }}
@@ -104,117 +89,19 @@ export function ContactPageContentDummy() {
               variant="outline"
               className="h-auto gap-2 rounded-full bg-card px-4 py-2 text-base font-semibold"
             >
-              <Sparkles className="size-4.5 text-primary" />
-              Book Your Appointment
+              <MapPin className="size-4.5 text-primary" />
+              Visit Us
             </Badge>
             <h2 className="mt-4 font-heading text-3xl font-semibold tracking-tight">
-              Let&rsquo;s Get You Approved
+              Find Our Office
             </h2>
             <p className="mx-auto mt-3 max-w-2xl text-muted-foreground">
-              Fill out the form below and our team will follow up to confirm your
-              telehealth evaluation. You can also visit us at our Los Angeles
-              office using the map.
+              Stop by our Los Angeles office, or reach our team by phone or
+              email above.
             </p>
           </motion.div>
 
-          <div className="mt-10 grid items-stretch gap-8 lg:grid-cols-2">
-            <motion.div
-              initial={{ opacity: 0, y: 24, scale: 0.97 }}
-              whileInView={{ opacity: 1, y: 0, scale: 1 }}
-              viewport={{ once: true, amount: 0.2 }}
-              transition={{ duration: 0.6, ease: EASE }}
-            >
-              <Card className="relative h-full overflow-hidden p-2 shadow-xl ring-1 ring-primary/10">
-                <div
-                  className="dot-pattern pointer-events-none absolute top-0 right-0 h-24 w-24"
-                  aria-hidden="true"
-                />
-                <div className="absolute inset-x-0 top-0 h-1.5 bg-gradient-to-r from-emerald-500 via-emerald-400 to-amber-400" />
-                <CardContent className="relative py-5">
-                  <motion.form
-                    className="grid gap-6 sm:grid-cols-2"
-                    initial="hidden"
-                    whileInView="show"
-                    viewport={{ once: true, amount: 0.2 }}
-                    variants={columnVariants}
-                  >
-                    <motion.div variants={itemVariants} className="grid gap-2">
-                      <Label htmlFor="firstName">First name</Label>
-                      <Input id="firstName" name="firstName" placeholder="Jane" />
-                    </motion.div>
-                    <motion.div variants={itemVariants} className="grid gap-2">
-                      <Label htmlFor="lastName">Last name</Label>
-                      <Input id="lastName" name="lastName" placeholder="Doe" />
-                    </motion.div>
-                    <motion.div variants={itemVariants} className="grid gap-2">
-                      <Label htmlFor="email">Email</Label>
-                      <Input
-                        id="email"
-                        name="email"
-                        type="email"
-                        placeholder="jane@example.com"
-                      />
-                    </motion.div>
-                    <motion.div variants={itemVariants} className="grid gap-2">
-                      <Label htmlFor="phone">Phone</Label>
-                      <Input
-                        id="phone"
-                        name="phone"
-                        type="tel"
-                        placeholder="(555) 555-5555"
-                      />
-                    </motion.div>
-                    <motion.div variants={itemVariants} className="grid gap-2 sm:col-span-2">
-                      <Label htmlFor="plan">Preferred plan</Label>
-                      {/*
-                        Plain native <select>, not the Radix Select used
-                        elsewhere: Radix's hidden native-select bubble
-                        mechanism reads each <option>'s text from a DOM ref
-                        that doesn't exist during SSR, so it always renders
-                        textless/label-less and fails W3C validation no
-                        matter what props are passed. A native element has
-                        no such issue since its text is just its children.
-                      */}
-                      <select
-                        id="plan"
-                        name="plan"
-                        defaultValue=""
-                        className={cn(
-                          "h-11 w-full min-w-0 rounded-lg border border-input bg-transparent px-3.5 text-base shadow-xs transition-[color,box-shadow] outline-none",
-                          "focus-visible:border-ring focus-visible:ring-3 focus-visible:ring-ring/50",
-                          "disabled:pointer-events-none disabled:cursor-not-allowed disabled:opacity-50",
-                          "dark:bg-input/30"
-                        )}
-                      >
-                        <option value="" disabled>
-                          Select a plan
-                        </option>
-                        {pricingPlans.map((plan) => (
-                          <option key={plan.name} value={plan.name.toLowerCase()}>
-                            {plan.name} — {plan.price}
-                          </option>
-                        ))}
-                      </select>
-                    </motion.div>
-                    <motion.div variants={itemVariants} className="grid gap-2 sm:col-span-2">
-                      <Label htmlFor="message">Tell us about your condition</Label>
-                      <Textarea
-                        id="message"
-                        name="message"
-                        placeholder="Briefly describe your medical history or condition"
-                        rows={4}
-                      />
-                    </motion.div>
-                    <motion.div variants={itemVariants} className="sm:col-span-2">
-                      <Button type="submit" size="xl" className="w-full">
-                        Submit Application
-                      </Button>
-                    </motion.div>
-                  </motion.form>
-                </CardContent>
-              </Card>
-            </motion.div>
-
+          <div className="mx-auto mt-10 max-w-2xl">
             <motion.div
               className="flex flex-col gap-4"
               initial={{ opacity: 0, y: 24 }}
@@ -226,7 +113,7 @@ export function ContactPageContentDummy() {
                 <iframe
                   title="Our location on Google Maps"
                   src={`https://www.google.com/maps?q=${encodeURIComponent(contactInfo.address)}&output=embed`}
-                  className="h-80 w-full border-0 lg:h-full lg:min-h-[32rem]"
+                  className="h-80 w-full border-0 sm:h-96"
                   loading="lazy"
                   referrerPolicy="no-referrer-when-downgrade"
                 />
