@@ -1,10 +1,23 @@
-import { Mail, Phone } from "lucide-react";
+import { Leaf, Mail, Phone } from "lucide-react";
 import Image from "next/image";
 
 import { Reveal } from "@/components/reveal";
 import { contactInfo } from "@/lib/site-data";
 
 const enter = "enter-fade-up";
+
+const trustPhrases = [
+  "Compassionate Care",
+  "Licensed Doctors",
+  "Secure Consultations",
+  "Fast Appointments",
+  "Personalized Guidance",
+  "State-Compliant Care",
+  "Private & Confidential",
+  "Trusted Healthcare Network",
+  "Seamless Digital Experience",
+  "Care That Starts With Listening",
+];
 
 const resourceLinks = [
   { label: "Process", href: "/#process" },
@@ -55,7 +68,7 @@ export function SiteFooter() {
   return (
     <div className="relative z-20 bg-background pt-4 sm:pt-10">
       <footer className="relative overflow-hidden rounded-t-[2rem] border border-b-0 border-white/10 bg-gradient-to-br from-emerald-950 via-emerald-900 to-emerald-950 sm:rounded-t-[3rem] md:rounded-t-[3.5rem]">
-        <div className="relative flex items-center justify-center overflow-hidden py-10 sm:py-14 md:py-16">
+        <div className="relative overflow-hidden border-b border-white/10 py-6 sm:py-8">
           <div
             className="pointer-events-none absolute inset-0"
             style={{
@@ -68,12 +81,21 @@ export function SiteFooter() {
             className="bg-noise pointer-events-none absolute inset-0 opacity-[0.12] mix-blend-overlay"
             aria-hidden="true"
           />
-          <Reveal
-            as="span"
-            className={`relative bg-gradient-to-b from-white via-emerald-50 to-emerald-200/60 bg-clip-text px-4 text-center font-heading text-[3.2rem] leading-none font-bold tracking-tight text-transparent sm:text-[5.5rem] md:text-[7rem] ${enter}`}
-          >
-            CALIFORNIA
-          </Reveal>
+          <div className="relative [mask-image:linear-gradient(to_right,transparent,black_8%,black_92%,transparent)]">
+            <div className="group flex w-max">
+              <div className="animate-marquee flex shrink-0 items-center gap-3 group-hover:[animation-play-state:paused] sm:gap-4">
+                {[...trustPhrases, ...trustPhrases].map((phrase, index) => (
+                  <span
+                    key={index}
+                    className="flex shrink-0 items-center gap-2 rounded-full border border-white/15 bg-white/5 px-4 py-2 text-xs font-medium text-white/90 backdrop-blur-sm sm:px-5 sm:py-2.5 sm:text-sm"
+                  >
+                    <Leaf className="size-3.5 shrink-0 text-emerald-300" />
+                    {phrase}
+                  </span>
+                ))}
+              </div>
+            </div>
+          </div>
         </div>
 
         <div className="relative z-10 mx-auto max-w-[1200px] px-4 pt-10 pb-[max(1.5rem,env(safe-area-inset-bottom))] sm:px-6 sm:pt-14 md:pt-16 lg:px-8">
