@@ -81,13 +81,10 @@ export function SiteHeader() {
       )}
     >
       <div className="mx-auto flex h-16 max-w-[1400px] items-center justify-between gap-4 px-4 sm:h-[70px] sm:px-6 lg:px-10">
-        <Link
-          href="/"
-          className="flex shrink-0 items-center rounded-full bg-white px-3.5 py-2"
-        >
-          <span className="relative block h-6 w-32 sm:h-7 sm:w-36">
+        <Link href="/" className="flex shrink-0 items-center">
+          <span className="relative block h-8 w-36 sm:h-9 sm:w-40">
             <Image
-              src="/mmca-logo.svg"
+              src="/mmca-logo-white.svg"
               alt="Medical Marijuana Card California - Home"
               fill
               priority
