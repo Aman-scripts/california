@@ -1,20 +1,20 @@
 import Image from "next/image";
 import Link from "next/link";
-import { Clock, DollarSign, Scale, ShieldCheck, Star, User } from "lucide-react";
+import { Clock, DollarSign, Scale, ShieldCheck, Star } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
 import { heroBadge, heroFeatures } from "@/lib/site-data";
 
 const featureIcons = [Clock, DollarSign, Scale];
-const avatarStyles = ["bg-amber-400", "bg-emerald-400", "bg-sky-400", "bg-violet-400"];
+const avatarPhotos = ["/icon1.svg", "/icon2.svg", "/icon3.svg", "/icon4.svg"];
 
 const enter = "enter-fade-up";
 
 export function HeroSection() {
   return (
-    <section className="relative overflow-hidden rounded-b-[2rem] bg-gradient-to-br from-emerald-950 via-emerald-900 to-emerald-950 py-14 sm:rounded-b-[2.5rem] sm:py-20">
+    <section className="relative overflow-hidden rounded-b-[2rem] bg-gradient-to-b from-emerald-950 via-emerald-900 to-emerald-950 py-14 sm:rounded-b-[2.5rem] sm:py-20">
       <div
-        className="pointer-events-none absolute -top-24 -right-24 h-80 w-80 rounded-full opacity-30"
+        className="pointer-events-none absolute top-20 -right-24 h-80 w-80 rounded-full opacity-30"
         style={{ background: "radial-gradient(circle, rgba(16,185,129,0.5) 0%, transparent 70%)" }}
         aria-hidden="true"
       />
@@ -28,12 +28,17 @@ export function HeroSection() {
         <div className="flex flex-col gap-7">
           <div className={`flex items-center gap-3 ${enter}`}>
             <div className="flex items-center -space-x-3">
-              {avatarStyles.map((style, index) => (
+              {avatarPhotos.map((src, index) => (
                 <span
-                  key={index}
-                  className={`flex size-8 items-center justify-center rounded-full ring-2 ring-emerald-900 ${style}`}
+                  key={src}
+                  className="flex size-8 items-center justify-center overflow-hidden rounded-full bg-emerald-100 ring-2 ring-emerald-900"
                 >
-                  <User className="size-4 text-emerald-950" />
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img
+                    src={src}
+                    alt={`Happy patient ${index + 1}`}
+                    className="size-full object-cover"
+                  />
                 </span>
               ))}
             </div>

@@ -81,8 +81,8 @@ export function SiteFooter() {
             <Reveal as="div" className={`flex flex-col items-start gap-4 ${enter}`}>
               <span className="relative block h-10 w-44 shrink-0 rounded-md bg-white px-3 py-1.5">
                 <Image
-                  src="/logo.png"
-                  alt="Medical Marijuana Card California"
+                  src="/mmca-logo.svg"
+                  alt="Medical Marijuana Card California footer logo"
                   fill
                   sizes="176px"
                   quality={60}
