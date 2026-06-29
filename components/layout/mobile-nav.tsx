@@ -28,8 +28,8 @@ export function MobileNav({
           <SheetTitle>
             <span className="relative block h-10 w-48">
               <Image
-                src="/logo.png"
-                alt="Medical Marijuana Card California"
+                src="/mmca-logo.svg"
+                alt="Medical Marijuana Card California mobile menu"
                 fill
                 sizes="192px"
                 quality={60}

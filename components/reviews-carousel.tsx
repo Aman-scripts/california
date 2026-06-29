@@ -70,8 +70,8 @@ export function ReviewsCarousel() {
                 <span className="flex size-7 shrink-0 items-center justify-center rounded-full bg-background shadow-sm ring-1 ring-foreground/5">
                   {/* eslint-disable-next-line @next/next/no-img-element */}
                   <img
-                    src="/icon.svg"
-                    alt="Google"
+                    src="/google-icon.svg"
+                    alt="Reviewed on Google"
                     width={14}
                     height={14}
                     loading="lazy"

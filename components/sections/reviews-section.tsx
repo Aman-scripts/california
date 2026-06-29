@@ -55,7 +55,7 @@ export function ReviewsSection() {
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
               src="/logo.svg"
-              alt="Google"
+              alt="Google logo"
               width={89}
               height={28}
               className="relative mt-3 h-7 w-auto"

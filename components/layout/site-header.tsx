@@ -76,7 +76,7 @@ export function SiteHeader() {
   return (
     <header
       className={cn(
-        "sticky top-0 z-40 w-full bg-gradient-to-br from-emerald-950 via-emerald-900 to-emerald-950 transition-[border-radius,box-shadow] duration-300",
+        "sticky top-0 z-40 w-full bg-emerald-950 transition-[border-radius,box-shadow] duration-300",
         isScrolled && "rounded-b-[2rem] shadow-lg shadow-emerald-950/40 sm:rounded-b-[2.5rem]"
       )}
     >
@@ -87,8 +87,8 @@ export function SiteHeader() {
         >
           <span className="relative block h-6 w-32 sm:h-7 sm:w-36">
             <Image
-              src="/logo.png"
-              alt="Medical Marijuana Card California"
+              src="/mmca-logo.svg"
+              alt="Medical Marijuana Card California - Home"
               fill
               priority
               sizes="144px"
