@@ -1,3 +1,4 @@
+import { ChevronRight, Home } from "lucide-react";
 import Link from "next/link";
 
 import { Container } from "@/components/layout/container";
@@ -29,18 +30,30 @@ export function Breadcrumbs({ items }: { items: Crumb[] }) {
   };
 
   return (
-    <nav aria-label="Breadcrumb" className="py-4">
+    <nav
+      aria-label="Breadcrumb"
+      className="border-b border-emerald-900/10 bg-emerald-50/60"
+    >
       <Container>
-        <ol className="flex flex-wrap items-center gap-1.5 text-sm text-muted-foreground">
+        <ol className="flex flex-wrap items-center gap-2 py-4 text-base font-medium text-emerald-900/70">
           {allItems.map((item, index) => (
-            <li key={item.label} className="flex items-center gap-1.5">
-              {index > 0 && <span aria-hidden="true">/</span>}
+            <li key={item.label} className="flex items-center gap-2">
+              {index > 0 && (
+                <ChevronRight
+                  aria-hidden="true"
+                  className="size-4 text-emerald-900/40"
+                />
+              )}
               {item.href ? (
-                <Link href={item.href} className="hover:text-foreground">
+                <Link
+                  href={item.href}
+                  className="flex items-center gap-1.5 transition-colors hover:text-emerald-700"
+                >
+                  {index === 0 && <Home aria-hidden="true" className="size-4" />}
                   {item.label}
                 </Link>
               ) : (
-                <span aria-current="page" className="text-foreground">
+                <span aria-current="page" className="font-semibold text-emerald-950">
                   {item.label}
                 </span>
               )}
