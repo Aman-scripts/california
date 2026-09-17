@@ -24,6 +24,7 @@ const resourceLinks = [
   { label: "Benefits", href: "/#benefits" },
   { label: "Pricing", href: "/#pricing" },
   { label: "FAQ", href: "/#faq" },
+  { label: "Blog", href: "/blog/" },
 ];
 
 const legalLinks = [
@@ -66,7 +67,7 @@ export function SiteFooter() {
   const year = new Date().getFullYear();
 
   return (
-    <div className="relative z-20 bg-background pt-4 sm:pt-10">
+    <div className="relative z-20 bg-background pt-2 sm:pt-4">
       <footer className="relative overflow-hidden rounded-t-[2rem] border border-b-0 border-white/10 bg-gradient-to-br from-emerald-950 via-emerald-900 to-emerald-950 sm:rounded-t-[3rem] md:rounded-t-[3.5rem]">
         <div className="relative overflow-hidden border-b border-white/10 py-6 sm:py-8">
           <div

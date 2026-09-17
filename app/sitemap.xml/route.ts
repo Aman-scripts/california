@@ -1,7 +1,10 @@
+import { blogPosts } from "@/lib/blog-data";
 import { siteConfig } from "@/lib/site-data";
 
 const routes = [
   "/",
+  "/blog/",
+  ...blogPosts.map((post) => `/blog/${post.slug}/`),
   "/contact-us/",
   "/privacy-policy/",
   "/refund-policy/",

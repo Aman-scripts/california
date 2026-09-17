@@ -24,6 +24,17 @@ const sectionIds = desktopNavLinks
   .filter((link) => link.href.startsWith("/#"))
   .map((link) => link.href.replace("/#", ""));
 
+function normalizePath(value: string) {
+  return value.replace(/\/+$/, "") || "/";
+}
+
+function isRouteActive(pathname: string, href: string) {
+  const path = normalizePath(pathname);
+  const target = normalizePath(href);
+  if (target === "/") return path === "/";
+  return path === target || path.startsWith(`${target}/`);
+}
+
 function useScrolled(threshold = 8) {
   const [isScrolled, setIsScrolled] = useState(false);
 
@@ -95,18 +106,20 @@ export function SiteHeader() {
           </span>
         </Link>
 
-        <nav className="hidden items-center gap-1 lg:flex">
+        <nav className="hidden items-center gap-0.5 lg:flex">
           {desktopNavLinks.map((link) => {
             const isHashLink = link.href.startsWith("/#");
             const id = link.href.replace("/#", "");
-            const isActive = isHashLink ? activeId === id : pathname === link.href;
-            const className = `relative rounded-full px-3.5 py-1.5 text-sm font-medium transition-colors ${
+            const isActive = isHashLink
+              ? activeId === id
+              : isRouteActive(pathname, link.href);
+            const className = `relative rounded-full px-3 py-1.5 text-sm font-medium transition-colors ${
               isActive ? "text-white" : "text-white/85 hover:text-white"
             }`;
             const content = (
               <>
                 {isActive && (
-                  <span className="enter-fade absolute inset-0 rounded-full bg-white/15 ring-1 ring-white/25" />
+                  <span className="enter-fade pointer-events-none absolute inset-0 rounded-full bg-white/15 ring-1 ring-white/25" />
                 )}
                 <span className="relative">{link.label}</span>
               </>
@@ -129,10 +142,10 @@ export function SiteHeader() {
           })}
         </nav>
 
-        <div className="hidden items-center gap-5 lg:flex">
+        <div className="hidden items-center gap-3 lg:flex">
           <a
             href={contactInfo.phoneHref}
-            className="flex items-center gap-1.5 text-sm font-semibold text-white transition-colors hover:text-emerald-200"
+            className="hidden items-center gap-1.5 text-sm font-semibold text-white transition-colors hover:text-emerald-200 xl:flex"
           >
             <Phone className="size-4" />
             {contactInfo.phone}
