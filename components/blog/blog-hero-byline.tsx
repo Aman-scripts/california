@@ -15,6 +15,7 @@ export function BlogHeroByline({ post }: { post: BlogPost }) {
           label="Written by"
           name={post.author}
           role={post.authorRole ?? "Health & Medical Content Writer"}
+          specialist={post.specialist}
           image={post.authorImage}
           fallback="writer"
         />
@@ -28,9 +29,9 @@ export function BlogHeroByline({ post }: { post: BlogPost }) {
             <p className="font-heading text-base font-semibold tracking-tight text-foreground">
               {formatBlogDateLong(post.date)}
             </p>
-            <p className="text-sm text-muted-foreground">
+            {/* <p className="text-sm text-muted-foreground">
               Last updated: {formatBlogDate(updatedDate)}
-            </p>
+            </p> */}
           </div>
         </div>
 
@@ -39,6 +40,7 @@ export function BlogHeroByline({ post }: { post: BlogPost }) {
             label="Medically Reviewed by"
             name={reviewerName}
             role={reviewerRole}
+            specialist={post.reviewerSpecialist} // or keep reviewerSpecialist
             image={post.reviewerImage}
             fallback="reviewer"
           />
@@ -54,12 +56,18 @@ function BylinePerson({
   role,
   image,
   fallback,
+  specialist,
+  reviewerSpecialist,
+  reviewerImage,
 }: {
   label: string;
   name: string;
   role: string;
   image?: string;
   fallback: "writer" | "reviewer";
+  specialist?: string;
+  reviewerSpecialist?: string;
+  reviewerImage?: string;
 }) {
   return (
     <div className="flex min-w-0 items-center gap-3">
@@ -92,6 +100,8 @@ function BylinePerson({
           {name}
         </p>
         <p className="text-sm text-muted-foreground">{role}</p>
+        {specialist && <p className="text-sm text-primary">{specialist}</p>}
+        {reviewerSpecialist && <p className="text-sm text-primary">{reviewerSpecialist}</p>}
       </div>
     </div>
   );

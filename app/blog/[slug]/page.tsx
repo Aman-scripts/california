@@ -12,6 +12,7 @@ import { BlogRichText } from "@/components/blog/blog-rich-text";
 import { BlogTableOfContents } from "@/components/blog/blog-table-of-contents";
 import { Breadcrumbs } from "@/components/breadcrumbs";
 import { Badge } from "@/components/ui/badge";
+import { BlogGoogleTrustToast } from "@/components/blog/blog-google-trusted-toast";
 import { Button } from "@/components/ui/button";
 import { Container } from "@/components/layout/container";
 import {
@@ -117,10 +118,10 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
     },
     reviewedBy: post.reviewer
       ? {
-          "@type": "Person",
-          name: post.reviewer,
-          jobTitle: post.reviewerRole,
-        }
+        "@type": "Person",
+        name: post.reviewer,
+        jobTitle: post.reviewerRole,
+      }
       : undefined,
     mainEntityOfPage: {
       "@type": "WebPage",
@@ -132,17 +133,17 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
   const faqJsonLd =
     faqs.length > 0
       ? {
-          "@context": "https://schema.org",
-          "@type": "FAQPage",
-          mainEntity: faqs.map((faq) => ({
-            "@type": "Question",
-            name: faq.question,
-            acceptedAnswer: {
-              "@type": "Answer",
-              text: faq.answer,
-            },
-          })),
-        }
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        mainEntity: faqs.map((faq) => ({
+          "@type": "Question",
+          name: faq.question,
+          acceptedAnswer: {
+            "@type": "Answer",
+            text: faq.answer,
+          },
+        })),
+      }
       : null;
 
   return (
@@ -161,18 +162,29 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
           }}
         />
       ) : null}
-      <Breadcrumbs
+      {/* <Breadcrumbs
         items={[
           { label: "Blog", href: "/blog/" },
           { label: post.breadcrumbLabel ?? post.title },
         ]}
-      />
-
-      <article className="py-10 sm:py-16">
+      /> */}
+      <div className="flex justify-end mt-4 mr-3">
+        <BlogGoogleTrustToast />
+      </div>
+      <article className="py-1 sm:py-6">
         <Container>
           <div className="mx-auto flex max-w-4xl flex-col items-center text-center">
             <Badge className="rounded-full">{post.category}</Badge>
-            <h1 className="mt-4 font-heading text-3xl font-bold tracking-tight text-primary sm:text-4xl lg:text-5xl">
+            <div className="mt-3 w-full">
+              <Breadcrumbs
+                items={[
+                  { label: "Blog", href: "/blog/" },
+                  { label: post.breadcrumbLabel ?? post.title },
+                ]}
+              />
+            </div>
+
+            <h1 className="mt-4 font-heading text-3xl font-bold tracking-tight leading-snug text-primary sm:text-4xl lg:text-5xl">
               {post.title}
             </h1>
             {post.subtitle ? (
@@ -183,9 +195,11 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
             <p className="mt-4 max-w-2xl text-muted-foreground">
               {post.heroDescription ?? post.excerpt}
             </p>
-            <BlogArrowButton href="/#get-approved" className="mt-7">
-              Get Your CA MMJ Card
-            </BlogArrowButton>
+            <div className="flex items-center gap-2 justify-center">
+              <BlogArrowButton href="/#get-approved" className="mt-7">
+                Get Your CA MMJ Card
+              </BlogArrowButton>
+            </div>
           </div>
 
           <BlogHeroByline post={post} />
@@ -200,108 +214,114 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
           </div>
         </Container>
 
-        <div className="mt-12 lg:grid lg:grid-cols-[minmax(16rem,18rem)_minmax(0,1fr)] lg:items-start">
+        <div className="mt-12 lg:grid lg:grid-cols-[minmax(16rem,18rem)_minmax(0,1fr)] lg:items-start lg:gap-x-12">
+
           <BlogTableOfContents items={headings} />
 
-          <div className="mx-auto w-full min-w-0 max-w-6xl px-4 py-8 sm:px-6 lg:mx-0 lg:max-w-3xl lg:px-10 lg:py-0 xl:px-14">
-              <div className="space-y-6 text-base leading-relaxed text-muted-foreground">
-                {post.content.map((block, index) => {
-                  if (block.type === "h2") {
-                    return (
-                      <h2
-                        key={`${block.text}-${index}`}
-                        id={headingToId(block.text)}
-                        className="scroll-mt-28 font-heading text-2xl font-semibold tracking-tight text-foreground sm:text-3xl"
-                      >
-                        {block.text}
-                      </h2>
-                    );
-                  }
+          <div className="mx-auto w-full min-w-0 max-w-6xl px-4 py-8 sm:px-6 lg:mx-0 lg:max-w-6xl lg:px-10 lg:py-0 xl:px-14">
+            <div className="space-y-6 text-base leading-relaxed text-muted-foreground text-[1xl">
+              {post.content.map((block, index) => {
+                if (block.type === "h2") {
+                  return (
+                    <h2
+                      key={`${block.text}-${index}`}
+                      id={headingToId(block.text)}
+                      className="scroll-mt-28 font-heading text-2xl font-semibold tracking-tight text-foreground sm:text-3xl"
+                    >
+                      {block.text}
+                    </h2>
+                  );
+                }
 
-                  if (block.type === "h3") {
-                    return (
-                      <h3
-                        key={`${block.text}-${index}`}
-                        className="font-heading text-xl font-semibold tracking-tight text-foreground"
-                      >
-                        {block.text}
+                if (block.type === "h3") {
+                  return (
+                    <h3
+                      key={`${block.text}-${index}`}
+                      className="font-heading text-xl font-semibold tracking-tight text-foreground"
+                    >
+                      {block.text}
+                    </h3>
+                  );
+                }
+
+                if (block.type === "ul") {
+                  return (
+                    <ul
+                      key={`list-${index}`}
+                      className="list-disc space-y-2 pl-5"
+                    >
+                      {block.items.map((item) => (
+                        <li key={item}>{item}</li>
+                      ))}
+                    </ul>
+                  );
+                }
+
+                if (block.type === "keypoints") {
+                  return (
+                    <aside
+                      key={`keypoints-${index}`}
+                      className="rounded-[1.75rem] bg-card p-5 shadow-sm ring-1 ring-primary/10 sm:p-8"
+                    >
+                      <h3 className="font-heading text-2xl font-semibold tracking-tight text-foreground">
+                        Key Points
                       </h3>
-                    );
-                  }
-
-                  if (block.type === "ul") {
-                    return (
-                      <ul
-                        key={`list-${index}`}
-                        className="list-disc space-y-2 pl-5"
-                      >
+                      <ul className="mt-5 space-y-3">
                         {block.items.map((item) => (
-                          <li key={item}>{item}</li>
+                          <li key={item} className="flex items-start gap-3">
+                            <span
+                              aria-hidden="true"
+                              className="mt-1.5 size-2.5 shrink-0 bg-primary"
+                            />
+                            <span>{item}</span>
+                          </li>
                         ))}
                       </ul>
-                    );
-                  }
-
-                  if (block.type === "keypoints") {
-                    return (
-                      <aside
-                        key={`keypoints-${index}`}
-                        className="rounded-[1.75rem] bg-card p-5 shadow-sm ring-1 ring-primary/10 sm:p-8"
-                      >
-                        <h3 className="font-heading text-2xl font-semibold tracking-tight text-foreground">
-                          Key Points
-                        </h3>
-                        <ul className="mt-5 space-y-3">
-                          {block.items.map((item) => (
-                            <li key={item} className="flex items-start gap-3">
-                              <span
-                                aria-hidden="true"
-                                className="mt-1.5 size-2.5 shrink-0 bg-primary"
-                              />
-                              <span>{item}</span>
-                            </li>
-                          ))}
-                        </ul>
-                      </aside>
-                    );
-                  }
-
-                  if (block.type === "cta") {
-                    return <BlogQualifyCta key={`cta-${index}`} />;
-                  }
-
-                  if (block.type === "table") {
-                    return (
-                      <BlogGlanceTable key={`table-${index}`} rows={block.rows} />
-                    );
-                  }
-
-                  if (block.type === "faq") {
-                    return (
-                      <BlogArticleFaqs key={`faq-${index}`} items={block.items} />
-                    );
-                  }
-
-                  return (
-                    <p
-                      key={`p-${index}`}
-                      className={
-                        block.dropCap
-                          ? "first-letter:float-left first-letter:mr-2.5 first-letter:font-heading first-letter:text-5xl first-letter:leading-[0.8] first-letter:font-bold first-letter:text-primary sm:first-letter:text-6xl"
-                          : undefined
-                      }
-                    >
-                      <BlogRichText text={block.text} links={block.links} />
-                    </p>
+                    </aside>
                   );
-                })}
-              </div>
+                }
+
+                if (block.type === "cta") {
+                  return <BlogQualifyCta key={`cta-${index}`} />;
+                }
+
+                if (block.type === "table") {
+                  return (
+                    <BlogGlanceTable key={`table-${index}`} rows={block.rows} />
+                  );
+                }
+
+                if (block.type === "faq") {
+                  return (
+                    <BlogArticleFaqs key={`faq-${index}`} items={block.items} />
+                  );
+                }
+
+                return (
+                  <p
+                    key={`p-${index}`}
+                    className={
+                      block.dropCap
+                        ? "first-letter:float-left first-letter:mr-2.5 first-letter:font-heading first-letter:text-5xl first-letter:leading-[0.8] first-letter:font-bold first-letter:text-primary sm:first-letter:text-6xl"
+                        : undefined
+                    }
+                  >
+                    <BlogRichText text={block.text} links={block.links} />
+                  </p>
+                );
+              })}
+            </div>
+            
+         <Container>
+          <BlogAuthorCard post={post} />
+        </Container> 
           </div>
+          
         </div>
 
-        <Container>
+         {/* <Container>
           <BlogAuthorCard post={post} />
-        </Container>
+        </Container>  */}
       </article>
 
       <section className="cv-auto pt-8 pb-4 sm:pt-10 sm:pb-6">

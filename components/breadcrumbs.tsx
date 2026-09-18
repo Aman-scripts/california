@@ -32,10 +32,10 @@ export function Breadcrumbs({ items }: { items: Crumb[] }) {
   return (
     <nav
       aria-label="Breadcrumb"
-      className="border-b border-emerald-900/10 bg-emerald-50/60"
+      className="border-b border-emerald-900/10 "
     >
       <Container>
-        <ol className="flex flex-wrap items-center gap-2 py-4 text-base font-medium text-emerald-900/70">
+        <ol className="flex flex-wrap items-center gap-2 py-4 text-base font-medium  justify-center text-emerald-900/70">
           {allItems.map((item, index) => (
             <li key={item.label} className="flex items-center gap-2">
               {index > 0 && (

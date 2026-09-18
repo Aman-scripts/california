@@ -40,9 +40,10 @@ export function BlogTableOfContents({
   if (items.length === 0) return null;
 
   return (
+    <div className="lg:sticky lg:top-28 lg:self-start">
     <nav
       aria-label="Table of contents"
-      className="w-full min-w-0 overflow-hidden bg-gradient-to-br from-emerald-900 via-emerald-800 to-emerald-900 p-5 text-white sm:px-6 sm:py-7 lg:sticky lg:top-28 lg:px-7"
+      className="w-full min-w-0 overflow-hidden rounded-l-none rounded-r-[2rem] bg-gradient-to-br from-emerald-900 via-emerald-800 to-emerald-900 p-12 text-white sm:px-6 sm:py-7 lg:w-[340px] lg:px-7"
     >
       <button
         type="button"
@@ -51,7 +52,7 @@ export function BlogTableOfContents({
         aria-controls="blog-toc-list"
         onClick={() => setOpen((current) => !current)}
       >
-        <span className="font-heading text-xl font-semibold tracking-tight">
+        <span className="font-heading text-2xl font-semibold tracking-tight">
           Table of Contents
         </span>
         <ChevronDown
@@ -62,7 +63,7 @@ export function BlogTableOfContents({
           )}
         />
       </button>
-      <h2 className="hidden font-heading text-xl font-semibold tracking-tight sm:text-2xl lg:block">
+      <h2 className="hidden font-heading text-2xl font-semibold tracking-tight sm:text-2xl lg:block">
         Table of Contents
       </h2>
       <div
@@ -103,5 +104,6 @@ export function BlogTableOfContents({
         })}
       </ul>
     </nav>
+    </div>
   );
 }

@@ -12,6 +12,7 @@ export function BlogRichText({
   text: string;
   links?: BlogTextLink[];
 }) {
+  
   if (!links?.length) return text;
 
   const pattern = new RegExp(

@@ -52,16 +52,18 @@ export type BlogPost = {
   author: string;
   authorRole?: string;
   authorBio?: string;
-  authorImage?: string;
+  specialist?: string;
   authorBioHref?: string;
   authorLinkedIn?: string;
   reviewer?: string;
   reviewerRole?: string;
   reviewerImage?: string;
+  reviewerSpecialist?: string;
   authorFeatureImage?: string;
   image?: string;
   featured?: boolean;
   content: BlogBlock[];
+  authorImage?: string;
 };
 
 export const blogPosts: BlogPost[] = [
@@ -78,17 +80,21 @@ export const blogPosts: BlogPost[] = [
       "Is marijuana legal in California in 2026? See medical and recreational cannabis rules, MMIC benefits, possession limits, and restrictions.",
     breadcrumbLabel: "Marijuana Legality",
     category: "MMIC & Recreational",
-    date: "2026-09-12",
+    date: "2026-09-18",
     updatedDate: "2026-09-17",
     readTime: "12 min read",
-    author: "MMJ California Team",
+    author: "Carrie Gessler",
+    specialist:"MSN, NP-C",
+    authorImage: "/carrie-gessler-msn.webp",
     authorRole: "Health & Medical Content Writer",
     authorBio:
       "The MMJ California Team translates California medical and adult-use cannabis rules into clear, patient-centered guides. We work with licensed doctors to keep MMIC details, possession limits, and 2026 law updates accurate and easy to follow.",
     authorBioHref: "/contact-us/",
-    reviewer: "California Physician",
+    reviewer: "Rick Rieser",
     reviewerRole: "M.D., Licensed California Physician",
+    reviewerSpecialist: "Medical Doctor (MD)",
     authorFeatureImage: "/heroSection.webp",
+    reviewerImage: "/dr-rick-rieser.webp",
     image: "/is-marijuana-legal-california.png",
     featured: true,
     content: [
@@ -374,4 +380,9 @@ export function getPostFaqs(post: BlogPost) {
 export function absoluteUrl(path: string) {
   if (path.startsWith("http")) return path;
   return `${siteConfig.url}${path.startsWith("/") ? path : `/${path}`}`;
+}
+export function getNextPost(slug: string): BlogPost | null {
+  const index = blogPosts.findIndex((post) => post.slug === slug);
+  if (index < 0 || blogPosts.length < 2) return null;
+  return blogPosts[(index + 1) % blogPosts.length] ?? null;
 }
