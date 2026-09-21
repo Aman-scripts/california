@@ -16,6 +16,7 @@ export function BlogTableOfContents({
   useEffect(() => {
     const elements = items
       .map((item) => document.getElementById(item.id))
+      
       .filter((el): el is HTMLElement => el !== null);
 
     if (elements.length === 0) {
